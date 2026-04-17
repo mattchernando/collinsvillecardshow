@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+import StructuredData from '../components/StructuredData.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  image = '/og-image.png',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = 'https://collinsvillecardshow.com';
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const fullCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={fullCanonical} />
+    <meta name="theme-color" content="#f59e0b" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Collinsville Card Show" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:url" content={fullCanonical} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- Favicon / Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!--
+      Google Fonts — no Subresource Integrity (SRI) hash applied.
+      Google Fonts serves different CSS content per User-Agent (browser-specific
+      font formats), so a pinned integrity hash would break the stylesheet for
+      any browser that receives different content. If we later self-host Inter
+      via fontsource or a similar package, we can add SRI at that point.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data -->
+    <StructuredData canonical={fullCanonical} image={fullImageUrl} />
+  </head>
+  <body class="min-h-screen bg-gray-950 text-white overflow-x-hidden" style="font-family: 'Inter', system-ui, sans-serif;">
+    <slot />
+  </body>
+</html>

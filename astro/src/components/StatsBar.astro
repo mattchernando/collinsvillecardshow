@@ -1,0 +1,19 @@
+---
+// StatsBar — static wrapper, AnimatedCounter is a React island loaded on visibility
+import AnimatedCounter from './AnimatedCounter.jsx';
+
+const stats = [
+  { end: 100, label: "Vendor Tables" },
+  { end: 8, label: "Categories" },
+  { end: 1000, label: "Attendees" },
+  { end: 6, label: "Shows / Year" },
+];
+---
+
+<section class="relative py-16 bg-gradient-to-r from-amber-600 via-orange-600 to-red-600">
+  <div class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+    {stats.map((stat) => (
+      <AnimatedCounter client:visible end={stat.end} label={stat.label} />
+    ))}
+  </div>
+</section>

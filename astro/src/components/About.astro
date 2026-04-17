@@ -1,0 +1,95 @@
+---
+// About — fully static, including info cards
+const tags = ["Free Admission", "Free Parking", "Family Friendly", "All Ages"];
+
+const infoCards = [
+  {
+    title: "Location",
+    desc: "The Crossings Church",
+    sub: "2002 Mall Street, Collinsville, IL 62234",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  },
+  {
+    title: "Hours",
+    desc: "9:00 AM – 3:00 PM",
+    sub: "Vendor setup begins at 7:30 AM",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  },
+  {
+    title: "Contact",
+    desc: "(618) 729-6999",
+    sub: "Call or text for vendor inquiries",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  },
+  {
+    title: "Admission",
+    desc: "Completely FREE",
+    sub: "Free parking available on-site",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  },
+];
+---
+
+<section id="about" class="py-24 px-4">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-4">About the Show</div>
+      <h2 class="text-4xl md:text-5xl font-black leading-tight mb-6">
+        The <span class="text-amber-400">Midwest's</span> Favorite Card Show
+      </h2>
+      <p class="text-gray-400 text-lg leading-relaxed mb-6">
+        Held at The Crossings Church in Collinsville, IL, our show brings together collectors, dealers, and enthusiasts from across the region. Whether you're hunting for rare vintage cards, the latest Pokémon releases, or unique collectibles — you'll find it here.
+      </p>
+      <p class="text-gray-400 text-lg leading-relaxed mb-8">
+        With close to 100 vendor tables and free admission, it's the perfect place for both seasoned collectors and newcomers to explore, trade, and discover.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {tags.map((tag) => (
+          <span class="px-4 py-2 bg-white bg-opacity-5 border border-white border-opacity-10 rounded-full text-sm font-semibold text-gray-300">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Info card stack -->
+    <div class="space-y-4">
+      {infoCards.map((item) => (
+        <div class="group p-5 bg-gray-900 border border-gray-800 rounded-2xl hover:border-amber-500 hover:border-opacity-50 transition-all cursor-default">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-gray-950 flex-shrink-0">
+              <Fragment set:html={item.icon} />
+            </div>
+            <div>
+              <div class="text-xs font-bold text-amber-400 uppercase tracking-wider">{item.title}</div>
+              <div class="text-lg font-bold text-white">{item.desc}</div>
+              <div class="text-sm text-gray-500">{item.sub}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!--
+    Google Maps Embed
+    Security note: No `sandbox` attribute is applied to this iframe.
+    Google Maps requires scripting and same-origin access to function; adding
+    sandbox (even with allow-scripts allow-same-origin) breaks the embed in
+    most browsers. The CSP frame-src directive restricts embeds to
+    https://www.google.com, which limits risk to the trusted Maps origin.
+  -->
+  <div class="max-w-6xl mx-auto mt-12">
+    <iframe
+      title="Map to Collinsville Card Show at The Crossings Church, 2002 Mall Street, Collinsville, IL 62234"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.5!2d-89.9986!3d38.6706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2002+Mall+St%2C+Collinsville%2C+IL+62234!5e0!3m2!1sen!2sus!4v1700000000000"
+      width="100%"
+      height="400"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="rounded-2xl border border-gray-800"
+    ></iframe>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+# Dependabot configuration
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
+version: 2
+updates:
+  # npm dependencies in /astro
+  - package-ecosystem: "npm"
+    directory: "/astro"
+    schedule:
+      interval: "weekly"
+    groups:
+      # Group minor + patch updates into a single PR
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    # Major updates get their own individual PRs (default behavior)
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"

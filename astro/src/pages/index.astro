@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import About from '../components/About.astro';
+import Categories from '../components/Categories.astro';
+import UpcomingShows from '../components/UpcomingShows.astro';
+import VendorCTA from '../components/VendorCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Collinsville Card Show | Trading Cards, Pokémon & Collectibles in Southern Illinois";
+const description = "Southern Illinois' premier trading card and collectibles show in Collinsville, IL. 100 vendor tables featuring sports cards, Pokémon, Magic, Funko, LEGO and more. Free admission, free parking. Near St. Louis and the Metro East.";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image="/og-image.png"
+  canonical="https://collinsvillecardshow.com/"
+>
+  <Nav />
+  <Hero />
+  <StatsBar />
+  <About />
+  <Categories />
+  <UpcomingShows />
+  <VendorCTA />
+  <Footer />
+</BaseLayout>

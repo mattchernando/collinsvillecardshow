@@ -1,0 +1,126 @@
+---
+import shows from '../data/shows.json';
+
+interface Props {
+  canonical: string;
+  image: string;
+}
+
+const { canonical, image } = Astro.props;
+
+const siteUrl = 'https://collinsvillecardshow.com';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Collinsville Card Show',
+  description: "Southern Illinois' premier trading card and collectibles show featuring sports cards, Pokémon, Magic, Funko, LEGO and more.",
+  url: siteUrl,
+  telephone: '+1-618-729-6999',
+  priceRange: 'Free',
+  image: image,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '2002 Mall Street',
+    addressLocality: 'Collinsville',
+    addressRegion: 'IL',
+    postalCode: '62234',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 38.6706,
+    longitude: -89.9845,
+  },
+  sameAs: [
+    'https://www.facebook.com/people/Collinsville-Card-Show/61575725262148/',
+  ],
+};
+
+// US DST: second Sunday of March → first Sunday of November
+// During DST (CDT) the offset is -05:00; during standard (CST) it's -06:00
+function isDST(year: number, month: number, day: number): boolean {
+  // month is 1-indexed here
+  if (month > 3 && month < 11) return true;   // Apr–Oct always CDT
+  if (month < 3 || month > 11) return false;   // Jan–Feb, Dec always CST
+  if (month === 3) {
+    // Second Sunday of March: find first Sunday (day-of-week of March 1), then +7
+    const marchFirst = new Date(year, 2, 1).getDay(); // 0=Sun
+    const secondSunday = marchFirst === 0 ? 8 : (14 - marchFirst + 1);
+    return day >= secondSunday;
+  }
+  // month === 11: first Sunday of November
+  const novFirst = new Date(year, 10, 1).getDay();
+  const firstSunday = novFirst === 0 ? 1 : (7 - novFirst + 1);
+  return day < firstSunday;
+}
+
+function centralOffset(year: number, month: number, day: number): string {
+  return isDST(year, month, day) ? '-05:00' : '-06:00';
+}
+
+// Parse show dates and build Event objects
+function parseShowDate(dateStr: string): Date {
+  return new Date(dateStr);
+}
+
+const events = shows.map((show) => {
+  const d = parseShowDate(show.date);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const dayNum = d.getDate();
+  const monthPad = String(month).padStart(2, '0');
+  const dayPad = String(dayNum).padStart(2, '0');
+  const offset = centralOffset(year, month, dayNum);
+  const startISO = `${year}-${monthPad}-${dayPad}T09:00:00${offset}`;
+  const endISO = `${year}-${monthPad}-${dayPad}T15:00:00${offset}`;
+
+  const monthName = d.toLocaleString('en-US', { month: 'long' });
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: `Collinsville Card Show — ${monthName} ${year}`,
+    startDate: startISO,
+    endDate: endISO,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: image,
+    description: `Trading card and collectibles show in Collinsville, IL on ${show.date}. Free admission and free parking. 100+ vendor tables featuring sports cards, Pokémon, Magic, Funko, LEGO and more.`,
+    location: {
+      '@type': 'Place',
+      name: 'Collinsville Card Show Venue',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '2002 Mall Street',
+        addressLocality: 'Collinsville',
+        addressRegion: 'IL',
+        postalCode: '62234',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 38.6706,
+        longitude: -89.9845,
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'Collinsville Card Show',
+      url: siteUrl,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: canonical,
+    },
+  };
+});
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+{events.map((event) => (
+  <script type="application/ld+json" set:html={JSON.stringify(event)} />
+))}
