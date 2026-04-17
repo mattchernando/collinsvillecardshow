@@ -1,0 +1,15 @@
+{
+  "name": "Collinsville Card Show",
+  "short_name": "Card Show",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#f59e0b",
+  "background_color": "#030712",
+  "display": "standalone",
+  "start_url": "/"
+}

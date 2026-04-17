@@ -1,0 +1,31 @@
+---
+import MobileMenu from './MobileMenu.jsx';
+---
+
+<nav class="fixed top-0 w-full z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center font-black text-gray-950 text-lg">
+        C
+      </div>
+      <div>
+        <div class="font-black text-lg leading-tight tracking-tight">COLLINSVILLE</div>
+        <div class="text-xs font-bold text-amber-400 uppercase tracking-widest">Card Show</div>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-semibold">
+      <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
+      <a href="#categories" class="text-gray-400 hover:text-white transition-colors">What's There</a>
+      <a href="#dates" class="text-gray-400 hover:text-white transition-colors">Dates</a>
+      <a href="#vendors" class="text-gray-400 hover:text-white transition-colors">Vendors</a>
+      <a href="#dates" class="px-5 py-2.5 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-950 font-black rounded-full hover:scale-105 transition-transform">
+        Next Show &rarr;
+      </a>
+    </div>
+
+    <!-- Mobile menu (React island) -->
+    <MobileMenu client:load />
+  </div>
+</nav>

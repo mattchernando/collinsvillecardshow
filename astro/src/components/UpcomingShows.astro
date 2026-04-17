@@ -1,0 +1,47 @@
+---
+import shows from '../data/shows.json';
+---
+
+<section id="dates" class="py-24 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-4">Mark Your Calendar</div>
+      <h2 class="text-4xl md:text-5xl font-black">
+        Upcoming <span class="text-amber-400">Shows</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {shows.map((show, i) => (
+        <div
+          class={`group flex items-center justify-between p-5 rounded-2xl border transition-all cursor-default ${
+            i === 0
+              ? 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-amber-500/30'
+              : 'bg-gray-900 border-gray-800 hover:border-gray-700'
+          }`}
+        >
+          <div class="flex items-center gap-4">
+            <div class={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg ${
+              i === 0
+                ? 'bg-gradient-to-br from-amber-400 to-orange-500 text-gray-950'
+                : 'bg-gray-800 text-gray-400'
+            }`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+            </div>
+            <div>
+              <div class={`font-bold text-lg ${i === 0 ? 'text-amber-400' : 'text-white'}`}>
+                {show.date}
+              </div>
+              <div class="text-sm text-gray-500">{show.day} · 9 AM – 3 PM · Free Admission</div>
+            </div>
+          </div>
+          {i === 0 && (
+            <span class="hidden sm:inline-flex px-4 py-1.5 bg-amber-400 text-gray-950 font-black text-xs rounded-full uppercase tracking-wider">
+              Next Show
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,25 +1,27 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import About from '../components/About.astro';
+import Categories from '../components/Categories.astro';
+import UpcomingShows from '../components/UpcomingShows.astro';
+import VendorCTA from '../components/VendorCTA.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Collinsville Card Show</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  </head>
-  <body>
-    <main class="flex min-h-screen items-center justify-center">
-      <div class="text-center">
-        <h1 class="text-4xl font-bold text-white mb-4">
-          Collinsville Card Show
-        </h1>
-        <p class="text-lg text-gray-400">
-          Astro migration — Tailwind v4 pipeline working!
-        </p>
-      </div>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="Collinsville Card Show | Trading Cards, Pokémon & Collectibles in Southern Illinois"
+  description="Southern Illinois' premier trading card and collectibles show in Collinsville, IL. 100 vendor tables featuring sports cards, Pokémon, Magic, Funko, LEGO and more. Free admission, free parking. Near St. Louis and the Metro East."
+  image="/og-image.png"
+  canonical="https://collinsvillecardshow.com/"
+>
+  <Nav />
+  <Hero />
+  <StatsBar />
+  <About />
+  <Categories />
+  <UpcomingShows />
+  <VendorCTA />
+  <Footer />
+</BaseLayout>

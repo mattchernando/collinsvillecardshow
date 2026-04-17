@@ -1,0 +1,98 @@
+---
+import shows from '../data/shows.json';
+
+function toISO(dateStr, time) {
+  const d = new Date(dateStr + ' 2026');
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const hour = time === '9:00 AM' ? '09:00' : '15:00';
+  return year + '-' + month + '-' + day + 'T' + hour + ':00-06:00';
+}
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  'name': 'Collinsville Card Show',
+  'description': 'Southern Illinois premier trading card and collectibles show featuring sports cards, Pokemon, Magic The Gathering, Funko Pop, LEGO, video games, and more.',
+  'url': 'https://collinsvillecardshow.com',
+  'telephone': '+1-618-729-6999',
+  'priceRange': 'Free',
+  'image': 'https://collinsvillecardshow.com/og-image.png',
+  'address': {
+    '@type': 'PostalAddress',
+    'streetAddress': '2002 Mall Street',
+    'addressLocality': 'Collinsville',
+    'addressRegion': 'IL',
+    'postalCode': '62234',
+    'addressCountry': 'US'
+  },
+  'geo': {
+    '@type': 'GeoCoordinates',
+    'latitude': 38.6706,
+    'longitude': -89.9845
+  },
+  'sameAs': [
+    'https://www.facebook.com/people/Collinsville-Card-Show/61575725262148/'
+  ]
+};
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  'name': 'Collinsville Card Show',
+  'url': 'https://collinsvillecardshow.com',
+  'logo': 'https://collinsvillecardshow.com/favicon.svg',
+  'telephone': '+1-618-729-6999',
+  'sameAs': [
+    'https://www.facebook.com/people/Collinsville-Card-Show/61575725262148/'
+  ]
+};
+
+const events = shows.map((show) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  'name': 'Collinsville Card Show — ' + show.date,
+  'description': 'Monthly trading card and collectibles show in Collinsville, IL. 100 vendor tables featuring sports cards, Pokemon, Magic The Gathering, Funko Pop, LEGO, video games, vintage toys, and more. Free admission and free parking.',
+  'startDate': toISO(show.date, '9:00 AM'),
+  'endDate': toISO(show.date, '3:00 PM'),
+  'eventStatus': 'https://schema.org/EventScheduled',
+  'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+  'image': 'https://collinsvillecardshow.com/og-image.png',
+  'location': {
+    '@type': 'Place',
+    'name': 'The Crossings Church',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': '2002 Mall Street',
+      'addressLocality': 'Collinsville',
+      'addressRegion': 'IL',
+      'postalCode': '62234',
+      'addressCountry': 'US'
+    },
+    'geo': {
+      '@type': 'GeoCoordinates',
+      'latitude': 38.6706,
+      'longitude': -89.9845
+    }
+  },
+  'organizer': {
+    '@type': 'Organization',
+    'name': 'Collinsville Card Show',
+    'url': 'https://collinsvillecardshow.com'
+  },
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'USD',
+    'availability': 'https://schema.org/InStock',
+    'url': 'https://collinsvillecardshow.com/'
+  }
+}));
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+<script type="application/ld+json" set:html={JSON.stringify(organization)} />
+{events.map((event) => (
+  <script type="application/ld+json" set:html={JSON.stringify(event)} />
+))}
