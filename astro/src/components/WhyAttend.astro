@@ -1,0 +1,61 @@
+---
+// WhyAttend — conversion-focused section highlighting attendee value props
+const reasons = [
+  {
+    title: "Discover Rare Finds",
+    desc: "From vintage sports cards and graded slabs to sealed Pokémon product and hard-to-find collectibles, our vendors bring inventory you won't see anywhere else.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`,
+  },
+  {
+    title: "Buy, Sell & Trade",
+    desc: "Whether you're looking to add to your collection, move some cards, or make trades — you'll find plenty of buyers, sellers, and fellow collectors ready to deal.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>`,
+  },
+  {
+    title: "Free for Everyone",
+    desc: "Admission is always free and so is parking. Bring the whole family — there's no cost to walk in and enjoy the show.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  },
+  {
+    title: "Meet the Community",
+    desc: "Connect with collectors, dealers, and hobbyists from across the St. Louis Metro East and Southern Illinois. Our shows bring together a passionate local community.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    title: "Family-Friendly Fun",
+    desc: "Kids love digging through Pokémon binders and finding their favorite action figures. It's a great hobby to share across generations.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg>`,
+  },
+  {
+    title: "Easy to Get To",
+    desc: "Located right off I-55/I-70 in Collinsville, IL — just minutes from downtown St. Louis with plenty of free on-site parking.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  },
+];
+---
+
+<section id="why-attend" class="py-24 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-4">Why Come Out</div>
+      <h2 class="text-4xl md:text-5xl font-black">
+        Why Attend the <span class="text-amber-400">Collinsville Card Show</span>?
+      </h2>
+      <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+        Whether you've been collecting for decades or just getting started, there's something for everyone at the biggest card show near St. Louis.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reasons.map((reason) => (
+        <div class="group p-6 bg-gray-900 border border-gray-800 rounded-2xl hover:border-amber-500/50 transition-all">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-gray-950 mb-4">
+            <Fragment set:html={reason.icon} />
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">{reason.title}</h3>
+          <p class="text-gray-400 leading-relaxed">{reason.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

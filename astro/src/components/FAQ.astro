@@ -1,0 +1,78 @@
+---
+// FAQ — static, SEO-rich section with expandable answers via CSS-only <details>
+// FAQ data is exported so it can be reused for FAQPage JSON-LD schema
+
+export const faqItems = [
+  {
+    question: "Is there an admission fee for the Collinsville Card Show?",
+    answer: "No — admission is completely free! Parking is also free. Just show up and enjoy the show.",
+  },
+  {
+    question: "Where is the Collinsville Card Show located?",
+    answer: "We're held at The Crossings Church, 2002 Mall Street, Collinsville, IL 62234. That's just 10 minutes east of downtown St. Louis, right off I-55/I-70 in the Metro East area.",
+  },
+  {
+    question: "What time does the card show open and close?",
+    answer: "Doors open at 9:00 AM and the show runs until 3:00 PM. Vendor setup begins at 7:30 AM.",
+  },
+  {
+    question: "What kinds of cards and collectibles are at the show?",
+    answer: "You'll find a huge variety — sports cards (baseball, football, basketball, hockey), Pokémon cards, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, action figures, video games, and much more.",
+  },
+  {
+    question: "Is the card show family-friendly?",
+    answer: "Absolutely! The Collinsville Card Show is a welcoming, all-ages event. Kids love browsing Pokémon cards and action figures, and it's a great way to spend the day as a family.",
+  },
+  {
+    question: "How do I reserve a vendor table?",
+    answer: "Call or text us at (618) 729-6999 to reserve your table. Tables fill up fast, so we recommend reaching out as early as possible. Visit our vendor tables page for more details on pricing and availability.",
+  },
+  {
+    question: "How often does the Collinsville Card Show happen?",
+    answer: "We hold shows regularly throughout the year — typically once a month on Saturdays. Check our upcoming dates section for the next scheduled show.",
+  },
+  {
+    question: "Is the card show near St. Louis?",
+    answer: "Yes! Collinsville is located in the St. Louis Metro East, just 10 minutes from downtown St. Louis across the river. We're easily accessible from anywhere in the greater St. Louis area, Southern Illinois, and beyond.",
+  },
+];
+---
+
+<section id="faq" class="py-24 px-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-4">Common Questions</div>
+      <h2 class="text-4xl md:text-5xl font-black">
+        Frequently Asked <span class="text-amber-400">Questions</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqItems.map((item, i) => (
+        <details
+          class="group bg-gray-900 border border-gray-800 rounded-2xl hover:border-gray-700 transition-colors"
+          open={i === 0}
+        >
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>{item.question}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">
+            {item.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

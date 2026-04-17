@@ -3,31 +3,51 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="py-12 px-4 border-t border-gray-800">
+<footer class="py-16 px-4 border-t border-gray-800">
   <div class="max-w-6xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center font-black text-gray-950 text-lg">
-          C
+    <!-- Top row — branding + contact -->
+    <div class="flex flex-col md:flex-row items-start justify-between gap-10 mb-10">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center font-black text-gray-950 text-lg">
+            C
+          </div>
+          <div>
+            <div class="font-black text-lg leading-tight">COLLINSVILLE CARD SHOW</div>
+            <div class="text-xs text-gray-500">Collinsville, IL · Since 2024</div>
+          </div>
         </div>
-        <div>
-          <div class="font-black text-lg leading-tight">COLLINSVILLE CARD SHOW</div>
-          <div class="text-xs text-gray-500">Collinsville, IL · Since 2024</div>
-        </div>
+        <p class="text-sm text-gray-500 max-w-sm leading-relaxed">
+          Southern Illinois' premier monthly trading card and collectibles show. Sports cards, Pokémon, Magic: The Gathering, and more — right near St. Louis.
+        </p>
       </div>
-      <div class="flex items-center gap-6 text-sm text-gray-500">
-        <a href="https://www.facebook.com/people/Collinsville-Card-Show/61575725262148/" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors font-semibold">
-          Facebook
-        </a>
-        <span>·</span>
-        <a href="tel:6187296999" class="hover:text-amber-400 transition-colors font-semibold">
-          (618) 729-6999
-        </a>
-        <span>·</span>
-        <span>2002 Mall Street, Collinsville, IL 62234</span>
+
+      <!-- Quick links — internal linking for SEO -->
+      <div class="grid grid-cols-2 gap-x-12 gap-y-2 text-sm">
+        <a href="/" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">Home</a>
+        <a href="/vendor-tables" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">Vendor Tables</a>
+        <a href="/st-louis-card-show" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">Card Show Near St. Louis</a>
+        <a href="/pokemon-card-show-illinois" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">Pokémon Card Show IL</a>
+        <a href="/#dates" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">Upcoming Dates</a>
+        <a href="/#faq" class="text-gray-400 hover:text-amber-400 transition-colors font-semibold">FAQ</a>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
+
+    <!-- Contact row -->
+    <div class="flex flex-wrap items-center gap-6 text-sm text-gray-500 mb-8">
+      <a href="https://www.facebook.com/people/Collinsville-Card-Show/61575725262148/" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition-colors font-semibold">
+        Facebook
+      </a>
+      <span class="text-gray-700">·</span>
+      <a href="tel:6187296999" class="hover:text-amber-400 transition-colors font-semibold">
+        (618) 729-6999
+      </a>
+      <span class="text-gray-700">·</span>
+      <span>2002 Mall Street, Collinsville, IL 62234</span>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-6 border-t border-gray-800 text-center text-xs text-gray-600">
       &copy; {year} Collinsville Card Show. All rights reserved.
     </div>
   </div>

@@ -4,13 +4,19 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import StatsBar from '../components/StatsBar.astro';
 import About from '../components/About.astro';
+import WhyAttend from '../components/WhyAttend.astro';
 import Categories from '../components/Categories.astro';
 import UpcomingShows from '../components/UpcomingShows.astro';
+import SocialProof from '../components/SocialProof.astro';
 import VendorCTA from '../components/VendorCTA.astro';
+import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
+import { homepageFAQ, buildFAQSchema } from '../data/seo';
 
-const title = "Collinsville Card Show | Trading Cards, Pokémon & Collectibles in Southern Illinois";
-const description = "Southern Illinois' premier trading card and collectibles show in Collinsville, IL. 100 vendor tables featuring sports cards, Pokémon, Magic, Funko, LEGO and more. Free admission, free parking. Near St. Louis and the Metro East.";
+const title = "Collinsville Card Show | Sports Cards, Pokémon & Collectibles Near St. Louis";
+const description = "The Collinsville Card Show is Southern Illinois' premier trading card and collectibles event — held monthly in Collinsville, IL, just minutes from St. Louis. 100 vendor tables, free admission, free parking. Sports cards, Pokémon, Magic: The Gathering, Funko, LEGO and more.";
+
+const faqSchema = buildFAQSchema(homepageFAQ);
 ---
 
 <BaseLayout
@@ -18,13 +24,17 @@ const description = "Southern Illinois' premier trading card and collectibles sh
   description={description}
   image="/og-image.png"
   canonical="https://collinsvillecardshow.com/"
+  extraSchema={[faqSchema]}
 >
   <Nav />
   <Hero />
   <StatsBar />
   <About />
+  <WhyAttend />
   <Categories />
   <UpcomingShows />
+  <SocialProof />
   <VendorCTA />
+  <FAQ />
   <Footer />
 </BaseLayout>

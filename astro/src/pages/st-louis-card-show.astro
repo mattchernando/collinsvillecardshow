@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import LandingCTA from '../components/LandingCTA.astro';
+import Footer from '../components/Footer.astro';
+import shows from '../data/shows.json';
+import {
+  SITE_URL,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../data/seo';
+
+const title = "Card Show Near St. Louis | Collinsville Card Show — Monthly in Collinsville, IL";
+const description = "Looking for a card show near St. Louis? The Collinsville Card Show is held monthly in Collinsville, IL — just 10 minutes from downtown STL. Free admission, 100 vendor tables, sports cards, Pokémon, collectibles and more.";
+
+const breadcrumb = buildBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Card Show Near St. Louis', url: `${SITE_URL}/st-louis-card-show` },
+]);
+
+const faq = buildFAQSchema([
+  {
+    question: "Where is the closest card show to St. Louis?",
+    answer: "The Collinsville Card Show is held just 10 minutes east of downtown St. Louis in Collinsville, IL. It's the closest recurring card show to the St. Louis metro area, with easy access from I-55 and I-70.",
+  },
+  {
+    question: "How do I get to the Collinsville Card Show from St. Louis?",
+    answer: "Take I-55/I-70 East across the river into Illinois. The venue — The Crossings Church at 2002 Mall Street, Collinsville, IL 62234 — is right off the interstate, about a 10-minute drive from downtown St. Louis.",
+  },
+  {
+    question: "Is the St. Louis area card show free?",
+    answer: "Yes! Admission and parking are completely free at the Collinsville Card Show. Just show up and enjoy.",
+  },
+  {
+    question: "How often is there a card show near St. Louis?",
+    answer: "The Collinsville Card Show runs monthly on Saturdays, typically once a month throughout the year. Check our homepage for the next scheduled date.",
+  },
+]);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_URL}/st-louis-card-show`}
+  extraSchema={[breadcrumb, faq]}
+>
+  <Nav />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 px-4 overflow-hidden">
+    <div
+      class="absolute inset-0"
+      style="background:
+        radial-gradient(circle at 30% 40%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(239, 68, 68, 0.08) 0%, transparent 50%);"
+    ></div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full mb-6">
+        <span class="text-sm font-bold text-amber-400">JUST 10 MINUTES FROM DOWNTOWN STL</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+        The Best <span class="text-amber-400">Card Show</span> Near St. Louis
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        Looking for a sports card show, Pokémon card event, or trading card show in the St. Louis area? The Collinsville Card Show has you covered — held monthly in Collinsville, IL with free admission, free parking, and 100 vendor tables.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why St. Louis collectors love this show -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black mb-8">
+        Why St. Louis Collectors Choose <span class="text-amber-400">Collinsville</span>
+      </h2>
+
+      <div class="prose-custom space-y-6 text-gray-400 text-lg leading-relaxed">
+        <p>
+          If you're in the greater St. Louis area and looking for a card show, the Collinsville Card Show is the easiest and most consistent option. We're located in Collinsville, Illinois — right across the river in the Metro East — and we hold shows on a monthly basis throughout the year.
+        </p>
+        <p>
+          With up to 100 vendor tables, our shows feature a wide range of inventory including sports cards (baseball, football, basketball, hockey), Pokémon TCG products, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, video games, and more. Whether you're a seasoned collector or just browsing for the first time, there's plenty to see.
+        </p>
+        <p>
+          The venue — The Crossings Church at 2002 Mall Street, Collinsville, IL 62234 — offers free on-site parking and is easy to reach from anywhere in the St. Louis metropolitan area, St. Clair County, Madison County, and the Metro East.
+        </p>
+      </div>
+
+      <!-- Upcoming dates -->
+      <div class="mt-12 p-6 bg-gray-900 border border-gray-800 rounded-2xl">
+        <h3 class="text-xl font-black text-amber-400 mb-4">Upcoming Show Dates</h3>
+        <div class="space-y-3">
+          {shows.map((show, i) => (
+            <div class="flex items-center justify-between py-2 border-b border-gray-800 last:border-0">
+              <span class:list={["font-bold", i === 0 ? "text-amber-400" : "text-white"]}>{show.date}</span>
+              <span class="text-sm text-gray-500">{show.day} · 9 AM – 3 PM</span>
+            </div>
+          ))}
+        </div>
+        <div class="mt-4">
+          <a href="/" class="text-amber-400 font-bold hover:underline">View all show details on our homepage &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location details -->
+  <section class="py-20 px-4 bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black mb-8">
+        Getting Here from <span class="text-amber-400">St. Louis</span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="text-gray-400 text-lg leading-relaxed space-y-4">
+          <p>
+            The Collinsville Card Show is held at <strong class="text-white">The Crossings Church</strong>, 2002 Mall Street, Collinsville, IL 62234. We're right off I-55/I-70, making us one of the most accessible card shows for anyone in the St. Louis metro.
+          </p>
+          <p>
+            Coming from St. Louis City or County, you'll typically be here in 10–15 minutes. We also draw collectors from O'Fallon, Belleville, Edwardsville, Glen Carbon, Fairview Heights, and throughout Southern Illinois.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Address</div>
+            <div class="text-white font-bold">2002 Mall Street, Collinsville, IL 62234</div>
+          </div>
+          <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Hours</div>
+            <div class="text-white font-bold">9:00 AM – 3:00 PM</div>
+          </div>
+          <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Admission</div>
+            <div class="text-white font-bold">FREE — parking is free too</div>
+          </div>
+          <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+            <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Contact</div>
+            <a href="tel:6187296999" class="text-white font-bold hover:text-amber-400 transition-colors">(618) 729-6999</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black mb-8 text-center">
+        St. Louis Card Show <span class="text-amber-400">FAQ</span>
+      </h2>
+      <div class="space-y-3">
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl" open>
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>Where is the closest card show to St. Louis?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">The Collinsville Card Show is held just 10 minutes east of downtown St. Louis in Collinsville, IL. It's the closest recurring card show to the St. Louis metro area, with easy access from I-55 and I-70.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>How do I get there from St. Louis?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Take I-55/I-70 East across the river into Illinois. The venue — The Crossings Church at 2002 Mall Street, Collinsville, IL 62234 — is right off the interstate.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>Is the St. Louis area card show free?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Yes! Admission and parking are completely free at the Collinsville Card Show.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>How often is there a card show near St. Louis?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">The Collinsville Card Show runs monthly on Saturdays. Check our <a href="/" class="text-amber-400 hover:underline">homepage</a> for upcoming dates.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto flex flex-wrap gap-4 justify-center text-sm">
+      <a href="/" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Collinsville Card Show Home</a>
+      <a href="/pokemon-card-show-illinois" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Pokémon Card Show Illinois</a>
+      <a href="/vendor-tables" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Vendor Tables</a>
+    </div>
+  </section>
+
+  <LandingCTA
+    headline="Ready to Come Out?"
+    body="Free admission, free parking, and 100 vendor tables of cards and collectibles. The next show is just around the corner."
+  />
+
+  <Footer />
+</BaseLayout>

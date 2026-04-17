@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import shows from '../data/shows.json';
+import {
+  SITE_URL,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../data/seo';
+
+const title = "Vendor Tables | Sell at the Collinsville Card Show Near St. Louis";
+const description = "Reserve a vendor table at the Collinsville Card Show — the biggest monthly card show near St. Louis. Get in front of 1,000+ attendees. Tables available for sports cards, Pokémon, TCGs, toys, and collectibles. Call (618) 729-6999.";
+
+const breadcrumb = buildBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Vendor Tables', url: `${SITE_URL}/vendor-tables` },
+]);
+
+const faq = buildFAQSchema([
+  {
+    question: "How much does a vendor table cost at the Collinsville Card Show?",
+    answer: "Table pricing varies. Call or text us at (618) 729-6999 for current rates and availability. We offer competitive pricing and tables fill up quickly.",
+  },
+  {
+    question: "How do I reserve a vendor table?",
+    answer: "Call or text (618) 729-6999 to reserve your table. We recommend booking as early as possible since tables tend to fill up well in advance of each show.",
+  },
+  {
+    question: "What can I sell at the card show?",
+    answer: "We welcome vendors selling sports cards, Pokémon TCG products, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO, vintage toys, action figures, video games, comics, and other collectibles.",
+  },
+  {
+    question: "What time can vendors set up?",
+    answer: "Vendor setup begins at 7:30 AM. The show opens to the public at 9:00 AM and runs until 3:00 PM.",
+  },
+  {
+    question: "How many attendees does the card show get?",
+    answer: "The Collinsville Card Show draws 1,000+ attendees to each show. We're the biggest recurring card show in the St. Louis Metro East area.",
+  },
+  {
+    question: "Is electricity available for vendor tables?",
+    answer: "Contact us at (618) 729-6999 to discuss any special setup requirements including electricity, additional tables, or preferred table placement.",
+  },
+]);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_URL}/vendor-tables`}
+  extraSchema={[breadcrumb, faq]}
+>
+  <Nav />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 px-4 overflow-hidden">
+    <div
+      class="absolute inset-0"
+      style="background:
+        radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.06) 0%, transparent 50%);"
+    ></div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full mb-6">
+        <span class="text-sm font-bold text-amber-400">1,000+ ATTENDEES PER SHOW</span>
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+        <span class="text-amber-400">Vendor Tables</span> at the Collinsville Card Show
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        Get your cards, toys, and collectibles in front of a passionate local audience. Reserve a table at the biggest monthly card show near St. Louis.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="tel:6187296999"
+          class="group px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-gray-950 font-black text-lg rounded-2xl hover:scale-105 transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call (618) 729-6999
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why vend here -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black mb-8">
+        Why Vend at the <span class="text-amber-400">Collinsville Card Show</span>?
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        {[
+          {
+            title: "High Foot Traffic",
+            desc: "1,000+ attendees per show from across the St. Louis metro, Metro East, and Southern Illinois.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+          },
+          {
+            title: "Recurring Monthly Shows",
+            desc: "Build a returning customer base with consistent monthly events — no one-off gambles.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>`,
+          },
+          {
+            title: "Prime Location",
+            desc: "Right off I-55/I-70 in Collinsville, IL — 10 minutes from St. Louis with free on-site parking for vendors and attendees.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
+          },
+          {
+            title: "Engaged, Buying Crowd",
+            desc: "Our attendees come ready to buy. Sports cards, Pokémon, TCGs, toys, and collectibles all sell well.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+          },
+          {
+            title: "Well-Organized Venue",
+            desc: "Spacious layout at The Crossings Church with room for up to 100 tables. Good flow and visibility for every vendor.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></svg>`,
+          },
+          {
+            title: "Social Media Promotion",
+            desc: "We actively promote each show on Facebook, driving awareness and attendance for our vendors.",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>`,
+          },
+        ].map((item) => (
+          <div class="p-6 bg-gray-900 border border-gray-800 rounded-2xl hover:border-amber-500/50 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-gray-950 mb-4">
+              <Fragment set:html={item.icon} />
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">{item.title}</h3>
+            <p class="text-gray-400 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- What vendors sell -->
+      <h2 class="text-3xl md:text-4xl font-black mb-6">
+        What You Can <span class="text-amber-400">Sell</span>
+      </h2>
+      <div class="text-gray-400 text-lg leading-relaxed space-y-6 mb-12">
+        <p>
+          We welcome vendors selling a wide range of cards, collectibles, and hobby products. The most popular categories at our shows include sports cards (baseball, football, basketball, and hockey), Pokémon TCG products, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, action figures, video games, and comics.
+        </p>
+        <p>
+          Whether you're a full-time dealer, a part-time hobbyist, or someone who wants to test selling at a card show for the first time — we'd love to have you. Our diverse vendor mix is a big part of what makes the Collinsville Card Show the go-to event in the region.
+        </p>
+      </div>
+
+      <!-- How to reserve -->
+      <div class="p-8 bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl">
+        <h2 class="text-2xl font-black text-white mb-4">How to Reserve a Table</h2>
+        <div class="text-gray-300 text-lg leading-relaxed space-y-4">
+          <p>Reserving a vendor table is simple:</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-amber-400 text-gray-950 rounded-full flex items-center justify-center font-black text-sm">1</span>
+              <span>Call or text <a href="tel:6187296999" class="text-amber-400 font-bold hover:underline">(618) 729-6999</a></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-amber-400 text-gray-950 rounded-full flex items-center justify-center font-black text-sm">2</span>
+              <span>Let us know which show date(s) you're interested in</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-amber-400 text-gray-950 rounded-full flex items-center justify-center font-black text-sm">3</span>
+              <span>We'll confirm availability and get you booked</span>
+            </div>
+          </div>
+          <p class="text-gray-400 text-base mt-4">Tables fill up fast — especially for shows during peak collecting season. We recommend reserving as early as possible.</p>
+        </div>
+      </div>
+
+      <!-- Upcoming dates -->
+      <div class="mt-12 p-6 bg-gray-900 border border-gray-800 rounded-2xl">
+        <h3 class="text-xl font-black text-amber-400 mb-4">Upcoming Show Dates — Book Your Table</h3>
+        <div class="space-y-3">
+          {shows.map((show, i) => (
+            <div class="flex items-center justify-between py-2 border-b border-gray-800 last:border-0">
+              <span class:list={["font-bold", i === 0 ? "text-amber-400" : "text-white"]}>{show.date}</span>
+              <span class="text-sm text-gray-500">{show.day} · Setup at 7:30 AM</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4 bg-gray-900/50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black mb-8 text-center">
+        Vendor <span class="text-amber-400">FAQ</span>
+      </h2>
+      <div class="space-y-3">
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl" open>
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>How much does a vendor table cost?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Table pricing varies. Call or text us at <a href="tel:6187296999" class="text-amber-400 hover:underline">(618) 729-6999</a> for current rates and availability.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>What can I sell at the card show?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">We welcome vendors selling sports cards, Pokémon, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO, vintage toys, action figures, video games, comics, and other collectibles.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>What time can vendors set up?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Vendor setup begins at 7:30 AM. The show opens to the public at 9:00 AM and runs until 3:00 PM.</div>
+        </details>
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>How many attendees does the show get?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed">The Collinsville Card Show draws 1,000+ attendees to each show from across the St. Louis metro and Southern Illinois.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto flex flex-wrap gap-4 justify-center text-sm">
+      <a href="/" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Collinsville Card Show Home</a>
+      <a href="/st-louis-card-show" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Card Show Near St. Louis</a>
+      <a href="/pokemon-card-show-illinois" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-amber-400 hover:border-amber-500/50 transition-all font-semibold">Pokémon Card Show Illinois</a>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto relative p-10 md:p-16 rounded-3xl overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-500 via-orange-600 to-red-600"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px); background-size: 30px 30px;"></div>
+      <div class="relative z-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Reserve Your Table Today</h2>
+        <p class="text-lg text-white/80 max-w-lg mx-auto mb-8">Tables fill up fast. Call or text now to lock in your spot at the next Collinsville Card Show.</p>
+        <a
+          href="tel:6187296999"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-950 font-black text-lg rounded-2xl hover:scale-105 transition-transform shadow-xl"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (618) 729-6999
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
