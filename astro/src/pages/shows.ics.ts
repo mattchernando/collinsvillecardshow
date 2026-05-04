@@ -4,11 +4,11 @@
 import type { APIRoute } from 'astro';
 import shows from '../data/shows.json';
 
-const SITE_URL = 'https://collinsvillecardshow.com';
+const SITE_URL = 'https://thecollinsvillecardshow.com';
 const VENUE_NAME = 'The Crossings Church';
 const VENUE_ADDRESS = '2002 Mall Street, Collinsville, IL 62234';
 const ORGANIZER_NAME = 'Collinsville Card Show';
-const ORGANIZER_EMAIL = 'info@collinsvillecardshow.com';
+const ORGANIZER_EMAIL = 'info@thecollinsvillecardshow.com';
 
 // US DST: second Sunday of March → first Sunday of November
 function isDST(year: number, month: number, day: number): boolean {
@@ -95,6 +95,10 @@ function buildIcs(): string {
     // subscribers don't get duplicate events on refresh.
     const uidDate =
       start.getUTCFullYear() + pad2(start.getUTCMonth() + 1) + pad2(start.getUTCDate());
+    // UID namespace intentionally kept on the legacy bare domain for subscriber
+    // stability — calendar clients use the full UID string as a stable identifier
+    // for an event. Changing this namespace would cause every existing subscriber
+    // to see duplicate events the next time the feed refreshes.
     const uid = `collinsville-card-show-${uidDate}@collinsvillecardshow.com`;
 
     const summary = `Collinsville Card Show — ${monthName} ${year}`;

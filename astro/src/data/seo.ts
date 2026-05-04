@@ -3,7 +3,7 @@
  * Centralizes FAQ schema and breadcrumb generation so landing pages stay DRY.
  */
 
-export const SITE_URL = 'https://collinsvillecardshow.com';
+export const SITE_URL = 'https://thecollinsvillecardshow.com';
 export const SITE_NAME = 'Collinsville Card Show';
 export const PHONE = '(618) 729-6999';
 export const PHONE_HREF = 'tel:6187296999';
