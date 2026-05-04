@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
 import { homepageFAQ, buildFAQSchema } from '../data/seo';
 
 const title = "Collinsville Card Show | Sports Cards, Pokémon & Collectibles Near St. Louis";
-const description = "The Collinsville Card Show is Southern Illinois' premier trading card and collectibles event — held monthly in Collinsville, IL, just minutes from St. Louis. 100 vendor tables, free admission, free parking. Sports cards, Pokémon, Magic: The Gathering, Funko, LEGO and more.";
+const description = "The Collinsville Card Show is Southern Illinois' premier trading card and collectibles event — held monthly in Collinsville, IL, just minutes from St. Louis. 100 vendor tables, free admission, free parking. Sports cards, Pokémon, One Piece TCG, Magic: The Gathering, Funko, LEGO and more.";
 
 const faqSchema = buildFAQSchema(homepageFAQ);
 ---
@@ -29,10 +29,10 @@ const faqSchema = buildFAQSchema(homepageFAQ);
   <Nav />
   <Hero />
   <StatsBar />
+  <UpcomingShows />
   <About />
   <WhyAttend />
   <Categories />
-  <UpcomingShows />
   <SocialProof />
   <VendorCTA />
   <FAQ />

@@ -31,7 +31,7 @@ export const homepageFAQ = [
   },
   {
     question: "What kinds of cards and collectibles are at the show?",
-    answer: "You'll find a huge variety — sports cards (baseball, football, basketball, hockey), Pokémon cards, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, action figures, video games, and much more.",
+    answer: "You'll find a huge variety — sports cards (baseball, football, basketball, hockey), Pokémon cards, One Piece TCG, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, action figures, video games, and much more.",
   },
   {
     question: "Is the card show family-friendly?",

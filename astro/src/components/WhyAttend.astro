@@ -37,9 +37,9 @@ const reasons = [
 <section id="why-attend" class="py-24 px-4">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-16">
-      <div class="text-sm font-bold text-amber-400 uppercase tracking-widest mb-4">Why Come Out</div>
+      <div class="text-sm font-bold text-red-500 uppercase tracking-widest mb-4">Why Come Out</div>
       <h2 class="text-4xl md:text-5xl font-black">
-        Why Attend the <span class="text-amber-400">Collinsville Card Show</span>?
+        Why Attend the <span class="text-red-500">Collinsville Card Show</span>?
       </h2>
       <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
         Whether you've been collecting for decades or just getting started, there's something for everyone at the biggest card show near St. Louis.
@@ -48,8 +48,8 @@ const reasons = [
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {reasons.map((reason) => (
-        <div class="group p-6 bg-gray-900 border border-gray-800 rounded-2xl hover:border-amber-500/50 transition-all">
-          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-gray-950 mb-4">
+        <div class="group p-6 bg-gray-900 border border-gray-800 rounded-2xl hover:border-red-600/50 transition-all">
+          <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500 to-red-800 flex items-center justify-center text-white mb-4">
             <Fragment set:html={reason.icon} />
           </div>
           <h3 class="text-xl font-bold text-white mb-2">{reason.title}</h3>

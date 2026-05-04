@@ -31,7 +31,7 @@ export default function AnimatedCounter({ end, label, duration = 2000 }) {
   return (
     <div ref={ref} className="text-center">
       <div className="text-5xl font-black text-white">{count}+</div>
-      <div className="text-sm font-semibold text-amber-300 uppercase tracking-widest mt-1">{label}</div>
+      <div className="text-sm font-semibold text-red-200 uppercase tracking-widest mt-1">{label}</div>
     </div>
   );
 }
