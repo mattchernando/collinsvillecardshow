@@ -5,7 +5,7 @@ import type { APIRoute } from 'astro';
 import shows from '../data/shows.json';
 
 const SITE_URL = 'https://collinsvillecardshow.com';
-const VENUE_NAME = 'Gateway Center';
+const VENUE_NAME = 'The Crossings Church';
 const VENUE_ADDRESS = '2002 Mall Street, Collinsville, IL 62234';
 const ORGANIZER_NAME = 'Collinsville Card Show';
 const ORGANIZER_EMAIL = 'info@collinsvillecardshow.com';

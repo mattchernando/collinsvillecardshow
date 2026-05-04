@@ -10,6 +10,10 @@ const { canonical, image } = Astro.props;
 
 const siteUrl = 'https://collinsvillecardshow.com';
 
+// priceRange is intentionally omitted: Schema.org expects relative cost
+// indicators like "$" / "$$" for paid venues. Admission to the show is free,
+// which is conveyed accurately via each Event's `offers.price = "0"` below.
+// Emitting `priceRange: "Free"` is non-standard and was flagged by site audits.
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
@@ -17,7 +21,6 @@ const localBusiness = {
   description: "Southern Illinois' premier trading card and collectibles show featuring sports cards, Pokémon, One Piece TCG, Magic, Funko, LEGO and more.",
   url: siteUrl,
   telephone: '+1-618-729-6999',
-  priceRange: 'Free',
   image: image,
   address: {
     '@type': 'PostalAddress',
@@ -114,7 +117,10 @@ const events = shows.map((show) => {
       price: '0',
       priceCurrency: 'USD',
       availability: 'https://schema.org/InStock',
-      url: canonical,
+      // Always point Offer URL at the canonical event listing (the homepage),
+      // not the rendering page's canonical — otherwise a 404 page would emit
+      // an Offer URL pointing to /404/, which Google may flag as invalid.
+      url: `${siteUrl}/`,
     },
   };
 });
