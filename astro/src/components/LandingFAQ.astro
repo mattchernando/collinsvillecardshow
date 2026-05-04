@@ -1,0 +1,58 @@
+---
+// LandingFAQ — reusable FAQ section for landing pages.
+// Each landing page passes its own short Q&A list (which may be a trimmed
+// version of the page's structured-data FAQ — that's intentional).
+
+interface FAQItem {
+  question: string;
+  /** HTML allowed in the answer (e.g. inline anchor tags). */
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  /** Text rendered before the highlighted word, e.g. "St. Louis Card Show". */
+  headlinePre?: string;
+  /** Highlighted word(s) rendered in red, e.g. "FAQ". */
+  headlineHighlight: string;
+  /** Optional Tailwind classes for the section (e.g. background tint). */
+  bgClass?: string;
+}
+
+const {
+  items,
+  headlinePre = '',
+  headlineHighlight,
+  bgClass = '',
+} = Astro.props;
+---
+
+<section class:list={['py-20 px-4', bgClass]}>
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black mb-8 text-center">
+      {headlinePre} <span class="text-red-500">{headlineHighlight}</span>
+    </h2>
+    <div class="space-y-3">
+      {items.map((item, i) => (
+        <details class="group bg-gray-900 border border-gray-800 rounded-2xl" open={i === 0}>
+          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
+            <span>{item.question}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-400 leading-relaxed" set:html={item.answer}></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

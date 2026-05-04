@@ -1,0 +1,61 @@
+---
+// MagicBody — page-specific body sections for /magic-the-gathering-card-show-illinois.
+// Mirrors PokemonBody's structure: intro prose, product grid, audience section, dates.
+import LandingShowDates from './LandingShowDates.astro';
+
+const productCategories = [
+  { name: 'Booster Boxes', emoji: '📦' },
+  { name: 'Bundles & Gift Boxes', emoji: '🎁' },
+  { name: 'Singles & Mythics', emoji: '✨' },
+  { name: 'Foils & Promos', emoji: '🌟' },
+  { name: 'Commander Decks', emoji: '👑' },
+  { name: 'Reserved List', emoji: '🏛️' },
+  { name: 'Standard / Modern / Pioneer', emoji: '🃏' },
+  { name: 'Sleeves & Playmats', emoji: '🎒' },
+  { name: 'Bulk Lots & Collections', emoji: '📚' },
+];
+---
+
+<section class="py-20 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black mb-8">
+      What <span class="text-red-500">Magic</span> Players Will Find
+    </h2>
+
+    <div class="text-gray-400 text-lg leading-relaxed space-y-6 mb-12">
+      <p>
+        The <a href="/" class="text-red-500 hover:underline">Collinsville Card Show</a> is a great destination for Magic: The Gathering players and collectors across Southern Illinois and the St. Louis Metro East. Whether you're building a new Commander deck, tuning a Modern list, hunting for a specific foil, or just digging through bulk for hidden gems, you'll find vendors with deep MTG inventory at every show.
+      </p>
+      <p>
+        Our vendors carry sealed product from the latest Standard sets, Commander precons, Bundles and Collector Boosters, plus individual singles spanning Standard, Modern, Pioneer, Legacy, and Commander. You'll also find Reserved List cards, vintage dual lands, foils, promos, and graded cardboard. Prices are competitive and many sellers are open to trades and negotiations.
+      </p>
+    </div>
+
+    <!-- Product categories grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+      {productCategories.map((item) => (
+        <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-600/50 transition-colors">
+          <span class="text-2xl">{item.emoji}</span>
+          <div class="font-bold text-sm text-gray-300 mt-2">{item.name}</div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-3xl md:text-4xl font-black mb-6">
+      Great for <span class="text-red-500">Players & Collectors</span>
+    </h2>
+    <div class="text-gray-400 text-lg leading-relaxed space-y-6">
+      <p>
+        Magic players in the St. Louis area know how hard it can be to find the right card locally. The Collinsville Card Show brings dozens of MTG-focused vendors under one roof on a regular schedule, making it one of the easiest ways to finish a Commander deck, find playset staples, or pick up a long-chased Reserved List card without paying online shipping and fees.
+      </p>
+      <p>
+        Admission is always free, parking is free, and the show runs from 9 AM to 3 PM — plenty of time to browse binders, talk shop, and meet other local players. We're located at The Crossings Church, 2002 Mall Street, Collinsville, IL 62234, just minutes from St. Louis.
+      </p>
+    </div>
+
+    <!-- Upcoming dates -->
+    <div class="mt-12">
+      <LandingShowDates timeLabel="9 AM – 3 PM · Free" linkText="View full show details" />
+    </div>
+  </div>
+</section>

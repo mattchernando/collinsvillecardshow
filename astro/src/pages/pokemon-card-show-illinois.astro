@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
+import LandingHero from '../components/LandingHero.astro';
+import PokemonBody from '../components/PokemonBody.astro';
+import LandingFAQ from '../components/LandingFAQ.astro';
+import LandingInternalLinks from '../components/LandingInternalLinks.astro';
 import LandingCTA from '../components/LandingCTA.astro';
 import Footer from '../components/Footer.astro';
-import shows from '../data/shows.json';
 import {
   SITE_URL,
   buildBreadcrumbSchema,
@@ -18,7 +21,7 @@ const breadcrumb = buildBreadcrumbSchema([
   { name: 'Pokémon Card Show Illinois', url: `${SITE_URL}/pokemon-card-show-illinois` },
 ]);
 
-const faq = buildFAQSchema([
+const schemaFAQ = [
   {
     question: "Where can I buy Pokémon cards in person in Illinois?",
     answer: "The Collinsville Card Show features multiple vendors who specialize in Pokémon TCG products. You'll find everything from the latest booster boxes and elite trainer boxes to vintage base set cards and graded slabs. We're held monthly in Collinsville, IL, near St. Louis.",
@@ -35,7 +38,26 @@ const faq = buildFAQSchema([
     question: "What Pokémon products can I find at the show?",
     answer: "Vendors carry a wide range of Pokémon TCG products including booster packs, booster boxes, elite trainer boxes, sealed collections, individual singles, graded cards (PSA, CGC, BGS), Japanese Pokémon products, binders, sleeves, and accessories.",
   },
-]);
+];
+
+const faq = buildFAQSchema(schemaFAQ);
+
+// On-page FAQ — preserves the existing trimmed display copy that differs from
+// the structured-data version above.
+const displayFAQ = [
+  {
+    question: "Where can I buy Pokémon cards in person in Illinois?",
+    answer: "The Collinsville Card Show features multiple vendors who specialize in Pokémon TCG products. You'll find everything from the latest booster boxes to vintage base set cards and graded slabs. We're held monthly in Collinsville, IL, near St. Louis.",
+  },
+  {
+    question: "Can kids trade Pokémon cards at the show?",
+    answer: "Absolutely! The Collinsville Card Show is a family-friendly, all-ages event. Kids are welcome to browse, buy, and trade Pokémon cards.",
+  },
+  {
+    question: "What Pokémon products can I find at the show?",
+    answer: "Vendors carry booster packs, booster boxes, elite trainer boxes, sealed collections, individual singles, graded cards (PSA, CGC, BGS), Japanese Pokémon products, binders, sleeves, and accessories.",
+  },
+];
 ---
 
 <BaseLayout
@@ -45,140 +67,32 @@ const faq = buildFAQSchema([
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />
-
-  <!-- Hero -->
-  <section class="relative pt-32 pb-20 px-4 overflow-hidden">
-    <div
-      class="absolute inset-0"
-      style="background:
-        radial-gradient(circle at 40% 30%, rgba(250, 204, 21, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 60% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);"
-    ></div>
-    <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-red-700/10 border border-red-600/30 rounded-full mb-6">
-        <span class="text-3xl">⚡</span>
-        <span class="text-sm font-bold text-red-500">POKÉMON TCG VENDORS EVERY SHOW</span>
-      </div>
-      <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
-        <span class="text-red-500">Pokémon</span> Card Show in Illinois
-      </h1>
-      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-        From the latest booster boxes to vintage base set cards, the Collinsville Card Show is the place to find Pokémon TCG products in Southern Illinois. Held monthly near St. Louis with free admission.
-      </p>
-    </div>
-  </section>
-
-  <!-- What you'll find -->
-  <section class="py-20 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-black mb-8">
-        What <span class="text-red-500">Pokémon</span> Fans Will Find
-      </h2>
-
-      <div class="text-gray-400 text-lg leading-relaxed space-y-6 mb-12">
-        <p>
-          The Collinsville Card Show consistently features vendors who specialize in Pokémon TCG products. Whether you're chasing the latest Scarlet &amp; Violet sets, hunting for vintage WOTC-era holos, or looking for graded slabs to add to your collection, you'll find dedicated Pokémon sellers at every show.
-        </p>
-        <p>
-          Our vendors carry a wide range of product including sealed booster boxes, elite trainer boxes, individual singles, Japanese Pokémon cards, graded cards from PSA, CGC, and Beckett, plus accessories like binders, sleeves, and deck boxes. Prices are competitive and many vendors are happy to negotiate — especially in person.
-        </p>
-      </div>
-
-      <!-- Product categories grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-        {[
-          { name: "Booster Boxes", emoji: "📦" },
-          { name: "Elite Trainer Boxes", emoji: "🎁" },
-          { name: "Singles & Holos", emoji: "✨" },
-          { name: "Graded Cards (PSA/CGC)", emoji: "🏆" },
-          { name: "Japanese Pokémon", emoji: "🇯🇵" },
-          { name: "Vintage & WOTC Era", emoji: "🕰️" },
-          { name: "Sealed Collections", emoji: "📋" },
-          { name: "Accessories & Supplies", emoji: "🎒" },
-          { name: "Bulk & Starter Lots", emoji: "📚" },
-        ].map((item) => (
-          <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl hover:border-red-600/50 transition-colors">
-            <span class="text-2xl">{item.emoji}</span>
-            <div class="font-bold text-sm text-gray-300 mt-2">{item.name}</div>
-          </div>
-        ))}
-      </div>
-
-      <h2 class="text-3xl md:text-4xl font-black mb-6">
-        Great for <span class="text-red-500">Families & Kids</span>
-      </h2>
-      <div class="text-gray-400 text-lg leading-relaxed space-y-6">
-        <p>
-          Pokémon is one of the most popular categories at the Collinsville Card Show, and our shows are a blast for kids and families. Young collectors love flipping through binders, picking out their favorite cards, and trading with other attendees. It's a hands-on, real-world hobby experience that gets kids away from screens and into a welcoming community.
-        </p>
-        <p>
-          Admission is always free, parking is free, and the show runs from 9 AM to 3 PM — plenty of time to explore everything. We're located at The Crossings Church, 2002 Mall Street, Collinsville, IL 62234, just minutes from St. Louis.
-        </p>
-      </div>
-
-      <!-- Upcoming dates -->
-      <div class="mt-12 p-6 bg-gray-900 border border-gray-800 rounded-2xl">
-        <h3 class="text-xl font-black text-red-500 mb-4">Upcoming Show Dates</h3>
-        <div class="space-y-3">
-          {shows.map((show, i) => (
-            <div class="flex items-center justify-between py-2 border-b border-gray-800 last:border-0">
-              <span class:list={["font-bold", i === 0 ? "text-red-500" : "text-white"]}>{show.date}</span>
-              <span class="text-sm text-gray-500">{show.day} · 9 AM – 3 PM · Free</span>
-            </div>
-          ))}
-        </div>
-        <div class="mt-4">
-          <a href="/" class="text-red-500 font-bold hover:underline">View full show details &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 px-4 bg-gray-900/50">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-black mb-8 text-center">
-        Pokémon Card Show <span class="text-red-500">FAQ</span>
-      </h2>
-      <div class="space-y-3">
-        <details class="group bg-gray-900 border border-gray-800 rounded-2xl" open>
-          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
-            <span>Where can I buy Pokémon cards in person in Illinois?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="px-5 pb-5 text-gray-400 leading-relaxed">The Collinsville Card Show features multiple vendors who specialize in Pokémon TCG products. You'll find everything from the latest booster boxes to vintage base set cards and graded slabs. We're held monthly in Collinsville, IL, near St. Louis.</div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
-          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
-            <span>Can kids trade Pokémon cards at the show?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Absolutely! The Collinsville Card Show is a family-friendly, all-ages event. Kids are welcome to browse, buy, and trade Pokémon cards.</div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-2xl">
-          <summary class="flex items-center justify-between cursor-pointer p-5 text-left font-bold text-white text-lg select-none list-none [&::-webkit-details-marker]:hidden">
-            <span>What Pokémon products can I find at the show?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 flex-shrink-0 ml-4 text-gray-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </summary>
-          <div class="px-5 pb-5 text-gray-400 leading-relaxed">Vendors carry booster packs, booster boxes, elite trainer boxes, sealed collections, individual singles, graded cards (PSA, CGC, BGS), Japanese Pokémon products, binders, sleeves, and accessories.</div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Internal links -->
-  <section class="py-12 px-4">
-    <div class="max-w-4xl mx-auto flex flex-wrap gap-4 justify-center text-sm">
-      <a href="/" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-red-500 hover:border-red-600/50 transition-all font-semibold">Collinsville Card Show Home</a>
-      <a href="/st-louis-card-show" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-red-500 hover:border-red-600/50 transition-all font-semibold">Card Show Near St. Louis</a>
-      <a href="/vendor-tables" class="px-4 py-2 bg-gray-900 border border-gray-800 rounded-full text-gray-400 hover:text-red-500 hover:border-red-600/50 transition-all font-semibold">Vendor Tables</a>
-    </div>
-  </section>
-
+  <LandingHero
+    badge="POKÉMON TCG VENDORS EVERY SHOW"
+    badgeEmoji="⚡"
+    title='<span class="text-red-500">Pokémon</span> Card Show in Illinois'
+    description="From the latest booster boxes to vintage base set cards, the Collinsville Card Show is the place to find Pokémon TCG products in Southern Illinois. Held monthly near St. Louis with free admission."
+    theme="pokemon"
+  />
+  <PokemonBody />
+  <LandingFAQ
+    items={displayFAQ}
+    headlinePre="Pokémon Card Show"
+    headlineHighlight="FAQ"
+    bgClass="bg-gray-900/50"
+  />
+  <LandingInternalLinks
+    links={[
+      { label: 'Collinsville Card Show Home', href: '/' },
+      { label: 'Card Show Near St. Louis', href: '/st-louis-card-show' },
+      { label: 'Magic: The Gathering Card Show', href: '/magic-the-gathering-card-show-illinois' },
+      { label: 'One Piece TCG Card Show', href: '/one-piece-tcg-card-show-illinois' },
+      { label: 'Vendor Tables', href: '/vendor-tables' },
+    ]}
+  />
   <LandingCTA
     headline="Come Find Your Next Pull"
     body="Free admission, free parking, and Pokémon vendors at every show. Bring the family and start collecting."
   />
-
   <Footer />
 </BaseLayout>

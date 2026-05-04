@@ -1,0 +1,69 @@
+---
+// StLouisBody — page-specific body sections for /st-louis-card-show.
+// Composed of the "Why STL collectors love this show" intro section
+// and the "Getting Here from St. Louis" location/details section.
+import LandingShowDates from './LandingShowDates.astro';
+---
+
+<!-- Why St. Louis collectors love this show -->
+<section class="py-20 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black mb-8">
+      Why St. Louis Collectors Choose <span class="text-red-500">Collinsville</span>
+    </h2>
+
+    <div class="prose-custom space-y-6 text-gray-400 text-lg leading-relaxed">
+      <p>
+        If you're in the greater St. Louis area and looking for a card show, the <a href="/" class="text-red-500 hover:underline">Collinsville Card Show</a> is the easiest and most consistent option. We're located in Collinsville, Illinois — right across the river in the Metro East — and we hold shows on a monthly basis throughout the year.
+      </p>
+      <p>
+        With up to 100 vendor tables, our shows feature a wide range of inventory including sports cards (baseball, football, basketball, hockey), Pokémon TCG products, One Piece TCG, Magic: The Gathering, Yu-Gi-Oh!, Funko Pops, LEGO sets, vintage toys, video games, and more. Whether you're a seasoned collector or just browsing for the first time, there's plenty to see.
+      </p>
+      <p>
+        The venue — The Crossings Church at 2002 Mall Street, Collinsville, IL 62234 — offers free on-site parking and is easy to reach from anywhere in the St. Louis metropolitan area, St. Clair County, Madison County, and the Metro East.
+      </p>
+    </div>
+
+    <!-- Upcoming dates -->
+    <div class="mt-12">
+      <LandingShowDates linkText="View all show details on our homepage" />
+    </div>
+  </div>
+</section>
+
+<!-- Location details -->
+<section class="py-20 px-4 bg-gray-900/50">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black mb-8">
+      Getting Here from <span class="text-red-500">St. Louis</span>
+    </h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="text-gray-400 text-lg leading-relaxed space-y-4">
+        <p>
+          The Collinsville Card Show is held at <strong class="text-white">The Crossings Church</strong>, 2002 Mall Street, Collinsville, IL 62234. We're right off I-55/I-70, making us one of the most accessible card shows for anyone in the St. Louis metro.
+        </p>
+        <p>
+          Coming from St. Louis City or County, you'll typically be here in 10–15 minutes. We also draw collectors from O'Fallon, Belleville, Edwardsville, Glen Carbon, Fairview Heights, and throughout Southern Illinois.
+        </p>
+      </div>
+      <div class="space-y-4">
+        <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+          <div class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Address</div>
+          <div class="text-white font-bold">2002 Mall Street, Collinsville, IL 62234</div>
+        </div>
+        <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+          <div class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Hours</div>
+          <div class="text-white font-bold">9:00 AM – 3:00 PM</div>
+        </div>
+        <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+          <div class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Admission</div>
+          <div class="text-white font-bold">FREE — parking is free too</div>
+        </div>
+        <div class="p-4 bg-gray-900 border border-gray-800 rounded-xl">
+          <div class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1">Contact</div>
+          <a href="tel:6187296999" class="text-white font-bold hover:text-red-500 transition-colors">(618) 729-6999</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

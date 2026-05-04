@@ -1,0 +1,39 @@
+---
+// LandingShowDates — small upcoming-shows panel reused by every landing-page body.
+// Reads from the canonical shows.json source of truth.
+
+import shows from '../data/shows.json';
+
+interface Props {
+  title?: string;
+  /** Right-hand text after the day, e.g. "9 AM – 3 PM" or "Setup at 7:30 AM". */
+  timeLabel?: string;
+  /** Optional bottom link — only rendered when linkText is set. */
+  linkText?: string;
+  linkHref?: string;
+}
+
+const {
+  title = 'Upcoming Show Dates',
+  timeLabel = '9 AM – 3 PM',
+  linkText,
+  linkHref = '/',
+} = Astro.props;
+---
+
+<div class="p-6 bg-gray-900 border border-gray-800 rounded-2xl">
+  <h3 class="text-xl font-black text-red-500 mb-4">{title}</h3>
+  <div class="space-y-3">
+    {shows.map((show, i) => (
+      <div class="flex items-center justify-between py-2 border-b border-gray-800 last:border-0">
+        <span class:list={['font-bold', i === 0 ? 'text-red-500' : 'text-white']}>{show.date}</span>
+        <span class="text-sm text-gray-500">{show.day} · {timeLabel}</span>
+      </div>
+    ))}
+  </div>
+  {linkText && (
+    <div class="mt-4">
+      <a href={linkHref} class="text-red-500 font-bold hover:underline">{linkText} &rarr;</a>
+    </div>
+  )}
+</div>

@@ -1,0 +1,51 @@
+---
+// LandingHero — reusable hero block for SEO landing pages.
+// Mirrors the visual treatment used on /st-louis-card-show, /pokemon-card-show-illinois, etc.
+//
+// Theme controls the background radial-gradient tint so each landing page
+// can have a subtle visual identity without duplicating layout markup.
+
+interface Props {
+  badge: string;
+  badgeEmoji?: string;
+  /** HTML allowed — typically a phrase with a <span class="text-red-500"> highlight. */
+  title: string;
+  description: string;
+  theme?: 'red' | 'pokemon' | 'mtg' | 'onepiece';
+}
+
+const {
+  badge,
+  badgeEmoji,
+  title,
+  description,
+  theme = 'red',
+} = Astro.props;
+
+const gradients: Record<NonNullable<Props['theme']>, string> = {
+  red:
+    'radial-gradient(circle at 30% 40%, rgba(220, 38, 38, 0.12) 0%, transparent 50%),' +
+    'radial-gradient(circle at 70% 60%, rgba(239, 68, 68, 0.08) 0%, transparent 50%)',
+  pokemon:
+    'radial-gradient(circle at 40% 30%, rgba(250, 204, 21, 0.12) 0%, transparent 50%),' +
+    'radial-gradient(circle at 60% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%)',
+  mtg:
+    'radial-gradient(circle at 40% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),' +
+    'radial-gradient(circle at 60% 70%, rgba(168, 85, 247, 0.10) 0%, transparent 50%)',
+  onepiece:
+    'radial-gradient(circle at 40% 30%, rgba(249, 115, 22, 0.14) 0%, transparent 50%),' +
+    'radial-gradient(circle at 60% 70%, rgba(220, 38, 38, 0.08) 0%, transparent 50%)',
+};
+---
+
+<section class="relative pt-32 pb-20 px-4 overflow-hidden">
+  <div class="absolute inset-0" style={`background: ${gradients[theme]};`}></div>
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 bg-red-700/10 border border-red-600/30 rounded-full mb-6">
+      {badgeEmoji && <span class="text-3xl">{badgeEmoji}</span>}
+      <span class="text-sm font-bold text-red-500">{badge}</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6" set:html={title}></h1>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">{description}</p>
+  </div>
+</section>

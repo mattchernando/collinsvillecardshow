@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import LandingHero from '../components/LandingHero.astro';
+import OnePieceBody from '../components/OnePieceBody.astro';
+import LandingFAQ from '../components/LandingFAQ.astro';
+import LandingInternalLinks from '../components/LandingInternalLinks.astro';
+import LandingCTA from '../components/LandingCTA.astro';
+import Footer from '../components/Footer.astro';
+import {
+  SITE_URL,
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from '../data/seo';
+
+const title = "One Piece TCG Card Show in Illinois | Collinsville Card Show Near St. Louis";
+const description = "Find One Piece TCG booster boxes, starter decks, alternate-art Leaders, singles, and tournament promos at the Collinsville Card Show in Illinois. Monthly event near St. Louis with free admission and dedicated OP TCG vendors.";
+
+const breadcrumb = buildBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'One Piece TCG Card Show Illinois', url: `${SITE_URL}/one-piece-tcg-card-show-illinois` },
+]);
+
+const schemaFAQ = [
+  {
+    question: "Where can I buy One Piece TCG cards in person in Illinois?",
+    answer: "The Collinsville Card Show features vendors who carry One Piece TCG product. You'll find sealed booster boxes and starter decks, singles, alternate-art Leaders, and tournament promos. We're held monthly in Collinsville, IL, near St. Louis.",
+  },
+  {
+    question: "Is there a One Piece card show near St. Louis?",
+    answer: "Yes! The Collinsville Card Show in Collinsville, IL is just 10 minutes from downtown St. Louis and features One Piece TCG vendors at every show. Admission and parking are free.",
+  },
+  {
+    question: "What One Piece TCG products can I find at the show?",
+    answer: "Vendors carry sealed booster boxes and cases from the latest sets, starter decks, individual singles, alternate-art and parallel cards, Leader cards, tournament promos, plus sleeves, deck boxes, and playmats themed for the OP TCG.",
+  },
+  {
+    question: "Can I trade or sell my One Piece TCG cards at the show?",
+    answer: "Many vendors at the Collinsville Card Show buy and trade One Piece TCG cards in addition to selling. Bring your binder and ask — most sellers are open to trades and negotiations, especially on alt arts and high-demand sealed product.",
+  },
+];
+
+const faq = buildFAQSchema(schemaFAQ);
+
+// On-page FAQ — slightly trimmed display copy.
+const displayFAQ = [
+  {
+    question: "Where can I buy One Piece TCG cards in person in Illinois?",
+    answer: "The Collinsville Card Show features vendors who carry One Piece TCG product — sealed boxes, starter decks, singles, alt-art Leaders, and tournament promos. We're held monthly in Collinsville, IL, near St. Louis.",
+  },
+  {
+    question: "What One Piece TCG products can I find at the show?",
+    answer: "Sealed booster boxes and cases, starter decks, individual singles, alternate-art and parallel cards, Leader cards, tournament promos, plus sleeves, deck boxes, and playmats.",
+  },
+  {
+    question: "Can I trade or sell my One Piece TCG cards at the show?",
+    answer: "Many vendors buy and trade One Piece TCG cards in addition to selling. Bring your binder and ask — sellers are usually open to trades, especially on alt arts and sealed product.",
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={`${SITE_URL}/one-piece-tcg-card-show-illinois`}
+  extraSchema={[breadcrumb, faq]}
+>
+  <Nav />
+  <LandingHero
+    badge="ONE PIECE TCG VENDORS EVERY SHOW"
+    badgeEmoji="🏴‍☠️"
+    title='<span class="text-red-500">One Piece TCG</span> Card Show in Illinois'
+    description="From sealed booster boxes to alternate-art Leaders, the Collinsville Card Show is the place to find One Piece TCG product in Southern Illinois. Held monthly near St. Louis with free admission."
+    theme="onepiece"
+  />
+  <OnePieceBody />
+  <LandingFAQ
+    items={displayFAQ}
+    headlinePre="One Piece TCG"
+    headlineHighlight="FAQ"
+    bgClass="bg-gray-900/50"
+  />
+  <LandingInternalLinks
+    links={[
+      { label: 'Collinsville Card Show Home', href: '/' },
+      { label: 'Card Show Near St. Louis', href: '/st-louis-card-show' },
+      { label: 'Pokémon Card Show Illinois', href: '/pokemon-card-show-illinois' },
+      { label: 'Magic: The Gathering Card Show', href: '/magic-the-gathering-card-show-illinois' },
+      { label: 'Vendor Tables', href: '/vendor-tables' },
+    ]}
+  />
+  <LandingCTA
+    headline="Set Sail for Your Next Card"
+    body="Free admission, free parking, and One Piece TCG vendors at every show. Find that alt-art Leader, finish your deck, or pick up your first starter."
+  />
+  <Footer />
+</BaseLayout>
