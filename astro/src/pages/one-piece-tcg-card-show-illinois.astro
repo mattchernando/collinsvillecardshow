@@ -17,8 +17,8 @@ const title = "One Piece TCG Card Show in Illinois | Collinsville Card Show Near
 const description = "Find One Piece TCG booster boxes, starter decks, alternate-art Leaders, singles, and tournament promos at the Collinsville Card Show in Illinois. Monthly event near St. Louis with free admission and dedicated OP TCG vendors.";
 
 const breadcrumb = buildBreadcrumbSchema([
-  { name: 'Home', url: SITE_URL },
-  { name: 'One Piece TCG Card Show Illinois', url: `${SITE_URL}/one-piece-tcg-card-show-illinois` },
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'One Piece TCG Card Show Illinois', url: `${SITE_URL}/one-piece-tcg-card-show-illinois/` },
 ]);
 
 const schemaFAQ = [
@@ -62,7 +62,7 @@ const displayFAQ = [
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${SITE_URL}/one-piece-tcg-card-show-illinois`}
+  canonical={`${SITE_URL}/one-piece-tcg-card-show-illinois/`}
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />

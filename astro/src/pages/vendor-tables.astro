@@ -13,8 +13,8 @@ const title = "Vendor Tables | Sell at the Collinsville Card Show Near St. Louis
 const description = "Reserve a vendor table at the Collinsville Card Show — the biggest monthly card show near St. Louis. Get in front of 1,000+ attendees. Tables available for sports cards, Pokémon, TCGs, toys, and collectibles. Call (618) 729-6999.";
 
 const breadcrumb = buildBreadcrumbSchema([
-  { name: 'Home', url: SITE_URL },
-  { name: 'Vendor Tables', url: `${SITE_URL}/vendor-tables` },
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'Vendor Tables', url: `${SITE_URL}/vendor-tables/` },
 ]);
 
 const faq = buildFAQSchema([
@@ -48,7 +48,7 @@ const faq = buildFAQSchema([
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${SITE_URL}/vendor-tables`}
+  canonical={`${SITE_URL}/vendor-tables/`}
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />

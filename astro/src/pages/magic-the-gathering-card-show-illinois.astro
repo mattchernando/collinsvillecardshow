@@ -17,8 +17,8 @@ const title = "Magic: The Gathering Card Show in Illinois | Collinsville Card Sh
 const description = "Find Magic: The Gathering singles, booster boxes, Commander decks, foils, and Reserved List cards at the Collinsville Card Show in Illinois. Monthly MTG-friendly event near St. Louis with free admission and dozens of vendors.";
 
 const breadcrumb = buildBreadcrumbSchema([
-  { name: 'Home', url: SITE_URL },
-  { name: 'Magic: The Gathering Card Show Illinois', url: `${SITE_URL}/magic-the-gathering-card-show-illinois` },
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'Magic: The Gathering Card Show Illinois', url: `${SITE_URL}/magic-the-gathering-card-show-illinois/` },
 ]);
 
 const schemaFAQ = [
@@ -62,7 +62,7 @@ const displayFAQ = [
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${SITE_URL}/magic-the-gathering-card-show-illinois`}
+  canonical={`${SITE_URL}/magic-the-gathering-card-show-illinois/`}
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />

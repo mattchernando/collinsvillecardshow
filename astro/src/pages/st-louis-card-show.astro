@@ -17,8 +17,8 @@ const title = "Card Show Near St. Louis | Collinsville Card Show — Monthly in 
 const description = "Looking for a card show near St. Louis? The Collinsville Card Show is held monthly in Collinsville, IL — just 10 minutes from downtown STL. Free admission, 100 vendor tables, sports cards, Pokémon, collectibles and more.";
 
 const breadcrumb = buildBreadcrumbSchema([
-  { name: 'Home', url: SITE_URL },
-  { name: 'Card Show Near St. Louis', url: `${SITE_URL}/st-louis-card-show` },
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'Card Show Near St. Louis', url: `${SITE_URL}/st-louis-card-show/` },
 ]);
 
 const schemaFAQ = [
@@ -67,7 +67,7 @@ const displayFAQ = [
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${SITE_URL}/st-louis-card-show`}
+  canonical={`${SITE_URL}/st-louis-card-show/`}
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />

@@ -17,8 +17,8 @@ const title = "Pokémon Card Show in Illinois | Collinsville Card Show Near St. 
 const description = "Find Pokémon cards, sealed product, booster boxes, graded slabs, and more at the Collinsville Card Show in Illinois. Monthly event near St. Louis with free admission. Vendors carry the latest sets and vintage Pokémon collectibles.";
 
 const breadcrumb = buildBreadcrumbSchema([
-  { name: 'Home', url: SITE_URL },
-  { name: 'Pokémon Card Show Illinois', url: `${SITE_URL}/pokemon-card-show-illinois` },
+  { name: 'Home', url: `${SITE_URL}/` },
+  { name: 'Pokémon Card Show Illinois', url: `${SITE_URL}/pokemon-card-show-illinois/` },
 ]);
 
 const schemaFAQ = [
@@ -63,7 +63,7 @@ const displayFAQ = [
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${SITE_URL}/pokemon-card-show-illinois`}
+  canonical={`${SITE_URL}/pokemon-card-show-illinois/`}
   extraSchema={[breadcrumb, faq]}
 >
   <Nav />
