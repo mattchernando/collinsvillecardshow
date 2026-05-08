@@ -26,8 +26,7 @@ reservations.
 │   ├── public/
 │   └── dist/           ← Build output (gitignored)
 ├── .github/
-│   └── workflows/
-│       └── deploy-cloudflare.yml
+│   └── dependabot.yml
 ├── README.md
 └── SECURITY.md
 ```
@@ -63,31 +62,18 @@ Commit and push to `main` — the site will redeploy automatically.
 ## Deployment
 
 The site auto-deploys to **Cloudflare Pages** on every push to `main` via
-GitHub Actions (`.github/workflows/deploy-cloudflare.yml`).
+Cloudflare's native Git integration — Pages watches the GitHub repo directly
+and rebuilds whenever new commits land. There is no GitHub Actions workflow
+and no `CLOUDFLARE_API_TOKEN` secret stored in this repo; the integration is
+authorized via the Cloudflare Pages GitHub App on the Cloudflare side.
 
-The workflow requires two repository secrets (add these in **GitHub → Settings
-→ Secrets and variables → Actions**):
+PRs and pushes to non-`main` branches produce **preview deployments** at a
+per-branch URL — useful for reviewing visual changes before merging.
 
-- `CLOUDFLARE_API_TOKEN` — a scoped API token (see below)
-- `CLOUDFLARE_ACCOUNT_ID` — your Cloudflare account ID
-
-### Creating a Cloudflare API Token
-
-The `CLOUDFLARE_API_TOKEN` must be a **scoped API token** — never a Global
-API Key.
-
-1. Go to **Cloudflare Dashboard → My Profile → API Tokens → Create Token**.
-2. Start from the **"Edit Cloudflare Workers"** template.
-3. Under **Permissions**, narrow to only **Cloudflare Pages : Edit** for the
-   specific account that hosts this project.
-4. Under **Account Resources**, select only the account used for this site.
-5. Optionally restrict **Client IP Address Filtering** to GitHub Actions' IP
-   ranges if you want an extra layer.
-6. Click **Continue to summary → Create Token**.
-7. Copy the token and add it as the `CLOUDFLARE_API_TOKEN` secret in GitHub.
-
-Do **not** use a Global API Key — it grants full account access and cannot be
-scoped or revoked independently.
+Build settings (build command, output directory, root directory, Node
+version) are configured in the Cloudflare Pages dashboard under the project's
+**Settings → Builds & deployments**, not in this repo. To change them, edit
+them there.
 
 ## Go-Live Checklist
 
