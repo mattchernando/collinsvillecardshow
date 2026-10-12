@@ -31,7 +31,7 @@ export default function AdminDashboard() {
     setError("");
     try {
       const res = await fetch(`/api/admin/registrations${d ? `?date=${d}` : ""}`);
-      if (res.status === 401) return setError("You need to sign in to view this page.");
+      if (res.status === 401) return setError("Your sign-in has expired. Refresh the page to sign in with Google again.");
       const json = await res.json();
       if (!res.ok) return setError(json.error || "Couldn't load registrations.");
       setShows(json.shows);

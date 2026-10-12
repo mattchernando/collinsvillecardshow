@@ -139,8 +139,12 @@ It runs on Cloudflare Pages Functions (`astro/functions/`), a D1 database
 
 - Tables are held ~35 minutes while a vendor is in Stripe Checkout, then released.
 - Stripe emails a receipt; `/vendor-tables/receipt/?id=…` is a permanent printable receipt.
-- `/admin/` lists paid vendors per show (email, phone, tables, what they sell) with CSV export.
-  It requires Cloudflare Access.
+- **https://admin.thecollinsvillecardshow.com** lists paid vendors per show (email, phone,
+  tables, what they sell) with CSV export. That hostname is a custom domain on this same Pages
+  project, behind a Cloudflare Access app (team `mhernando`, Sign in with Google, email
+  allow-list). `/admin` on the public site redirects there, and `/api/admin/*` is refused
+  on any other host. `functions/_middleware.js` handles the host routing; `public/_routes.json`
+  keeps static assets from invoking Functions.
 
 Variables & secrets (Pages → Settings → Variables and Secrets, Production):
 
@@ -148,8 +152,8 @@ Variables & secrets (Pages → Settings → Variables and Secrets, Production):
 |---|---|
 | `STRIPE_SECRET_KEY` | Stripe secret key |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for the webhook at `/api/stripe-webhook` (events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.expired`) |
-| `ACCESS_TEAM_DOMAIN` | e.g. `yourteam.cloudflareaccess.com` |
-| `ACCESS_AUD` | Audience tag of the Access application covering `/admin*` and `/api/admin/*` |
+| `ACCESS_TEAM_DOMAIN` | `mhernando.cloudflareaccess.com` |
+| `ACCESS_AUD` | Application Audience (AUD) tag of the `admin.thecollinsvillecardshow.com` Access app |
 
 Local preview with a real Functions runtime and local D1:
 
