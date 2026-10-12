@@ -143,7 +143,9 @@ It runs on Cloudflare Pages Functions (`astro/functions/`), a D1 database
   tables, what they sell) with CSV export. That hostname is a custom domain on this same Pages
   project, behind a Cloudflare Access app (team `mhernando`, Sign in with Google, email
   allow-list). `/admin` on the public site redirects there, and `/api/admin/*` is refused
-  on any other host. `functions/_middleware.js` handles the host routing; `public/_routes.json`
+  on any other host. Two tabs: **By show** (table layout, per-show CSV) and **All vendors**
+  (CRM-style directory, one profile per email with registration history, full CSV).
+  `functions/_middleware.js` handles the host routing; `public/_routes.json`
   keeps static assets from invoking Functions.
 
 Secrets go in Pages → Settings → Variables and Secrets (Production). Plain variables

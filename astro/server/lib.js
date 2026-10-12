@@ -119,3 +119,42 @@ export async function verifyAccessJwt(token, env) {
   if (payload.exp * 1000 < Date.now()) throw new Error('expired');
   return payload;
 }
+
+// One CRM-style profile per vendor (keyed by email) across every paid registration.
+// Contact details come from the vendor's most recent registration.
+export async function loadVendorDirectory(db) {
+  const { results } = await db
+    .prepare(`SELECT * FROM registrations WHERE status = 'paid' ORDER BY paid_at`)
+    .all();
+
+  const byEmail = new Map();
+  for (const r of results) {
+    const key = r.email.toLowerCase();
+    const v = byEmail.get(key) ?? { email: r.email, shows: [], totalTables: 0, totalCents: 0 };
+    Object.assign(v, {
+      name: r.name,
+      business: r.business,
+      phone: r.phone,
+      sells: r.sells,
+      sellsLabel: sellsLabel(r),
+      lastPaidAt: r.paid_at,
+    });
+    v.firstPaidAt ??= r.paid_at;
+    v.totalTables += r.tables;
+    v.totalCents += r.amount_cents;
+    v.shows.push({
+      id: r.id,
+      date: r.show_date,
+      label: showLabel(r.show_date),
+      tables: r.tables,
+      amountCents: r.amount_cents,
+      receiptNumber: r.receipt_number,
+    });
+    byEmail.set(key, v);
+  }
+
+  return [...byEmail.values()].map((v) => {
+    const dates = v.shows.map((s) => s.date).sort();
+    return { ...v, showCount: new Set(dates).size, firstShow: dates[0], lastShow: dates[dates.length - 1] };
+  });
+}

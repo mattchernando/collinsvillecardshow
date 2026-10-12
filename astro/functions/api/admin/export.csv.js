@@ -1,7 +1,7 @@
 import { findShow, sellsLabel } from '../../../server/lib.js';
 import { loadPaid } from './registrations.js';
 
-const cell = (v) => {
+export const csvCell = (v) => {
   let s = v == null ? '' : String(v);
   if (/^[=+\-@]/.test(s)) s = `'${s}`; // keep spreadsheets from treating input as a formula
   return `"${s.replace(/"/g, '""')}"`;
@@ -15,7 +15,7 @@ export async function onRequestGet({ request, env }) {
   const lines = [
     ['Name', 'Business', 'Email', 'Phone', 'Tables', 'Sells', 'Paid', 'Receipt #'],
     ...rows.map((r) => [r.name, r.business, r.email, r.phone, r.tables, sellsLabel(r), (r.amount_cents / 100).toFixed(2), r.receipt_number]),
-  ].map((row) => row.map(cell).join(','));
+  ].map((row) => row.map(csvCell).join(','));
 
   return new Response(lines.join('\r\n') + '\r\n', {
     headers: {
