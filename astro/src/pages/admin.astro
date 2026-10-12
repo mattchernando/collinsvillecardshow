@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AdminDashboard from '../components/AdminDashboard.jsx';
+---
+
+<BaseLayout title="Vendor Admin | Collinsville Card Show" description="Vendor registrations." canonical="/admin/" robots="noindex, nofollow">
+  <main class="py-10 px-4">
+    <div class="max-w-6xl mx-auto">
+      <a href="/" class="text-sm text-gray-500 hover:text-red-500">&larr; thecollinsvillecardshow.com</a>
+      <div class="mt-4">
+        <AdminDashboard client:load />
+      </div>
+    </div>
+  </main>
+</BaseLayout>

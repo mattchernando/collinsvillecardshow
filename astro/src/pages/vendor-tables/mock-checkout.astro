@@ -1,0 +1,34 @@
+---
+// Local preview only: stands in for Stripe Checkout when no Stripe key is configured.
+// The API refuses mock payments on any non-localhost host.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Test Checkout" description="Local test checkout." robots="noindex, nofollow">
+  <main class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-md w-full p-8 rounded-3xl bg-white text-gray-900 text-center">
+      <div class="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Preview mode — not Stripe</div>
+      <h1 class="text-2xl font-black mb-2">Test checkout</h1>
+      <p class="text-gray-600 text-sm mb-6">On the live site this is Stripe's secure payment page. No card is charged here.</p>
+      <button id="pay" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold mb-3">Simulate successful payment</button>
+      <button id="cancel" class="w-full py-3 rounded-xl border border-gray-300 font-bold">Cancel (back to form)</button>
+      <p id="err" class="text-red-600 text-sm mt-4"></p>
+    </div>
+  </main>
+  <script>
+    const id = new URLSearchParams(location.search).get('id');
+    document.getElementById('pay')!.addEventListener('click', async () => {
+      const res = await fetch('/api/dev/mock-pay', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      const json = await res.json();
+      if (res.ok) location.assign(json.url);
+      else document.getElementById('err')!.textContent = json.error;
+    });
+    document.getElementById('cancel')!.addEventListener('click', () =>
+      location.assign(`/vendor-tables/?cancelled=${id}#register`)
+    );
+  </script>
+</BaseLayout>

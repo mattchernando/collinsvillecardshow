@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "preview:cf": "astro build && wrangler d1 migrations apply DB --local && wrangler pages dev dist --port 8788"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.1",

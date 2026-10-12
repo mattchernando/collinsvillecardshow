@@ -1,0 +1,10 @@
+# Cloudflare Pages config (bindings for Pages Functions in ./functions).
+name = "collinsvillecardshow"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-05-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "collinsville_vendors"
+database_id = "bff03b92-3caf-4861-be1b-fd2226d81d6e"
+migrations_dir = "migrations"

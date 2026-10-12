@@ -8,3 +8,13 @@
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/admin*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+/vendor-tables/receipt*
+  X-Robots-Tag: noindex, nofollow
+
+/vendor-tables/mock-checkout*
+  X-Robots-Tag: noindex, nofollow

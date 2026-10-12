@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Receipt from '../../components/Receipt.jsx';
+---
+
+<BaseLayout
+  title="Your Receipt | Collinsville Card Show"
+  description="Your Collinsville Card Show vendor table receipt."
+  canonical="/vendor-tables/receipt/"
+  robots="noindex, nofollow"
+>
+  <div class="print:hidden"><Nav /></div>
+  <main class="pt-32 pb-20 px-4 print:pt-0">
+    <div class="max-w-2xl mx-auto">
+      <Receipt client:load />
+    </div>
+  </main>
+</BaseLayout>

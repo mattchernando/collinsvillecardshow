@@ -1,14 +1,16 @@
 [
-  { "date": "January 2, 2027", "day": "Saturday" },
-  { "date": "February 6, 2027", "day": "Saturday" },
-  { "date": "March 6, 2027", "day": "Saturday" },
-  { "date": "April 3, 2027", "day": "Saturday" },
-  { "date": "May 1, 2027", "day": "Saturday" },
-  { "date": "June 5, 2027", "day": "Saturday" },
-  { "date": "July 3, 2027", "day": "Saturday" },
-  { "date": "August 7, 2027", "day": "Saturday" },
-  { "date": "September 4, 2027", "day": "Saturday" },
-  { "date": "October 2, 2027", "day": "Saturday" },
-  { "date": "November 6, 2027", "day": "Saturday" },
-  { "date": "December 4, 2027", "day": "Saturday" }
+  { "date": "November 7, 2026", "day": "Saturday", "tables": 74 },
+  { "date": "December 5, 2026", "day": "Saturday", "tables": 79 },
+  { "date": "January 2, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "February 6, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "March 6, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "April 3, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "May 1, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "June 5, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "July 3, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "August 7, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "September 4, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "October 2, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "November 6, 2027", "day": "Saturday", "tables": 85 },
+  { "date": "December 4, 2027", "day": "Saturday", "tables": 85 }
 ]

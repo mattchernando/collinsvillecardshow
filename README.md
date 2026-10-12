@@ -127,3 +127,35 @@ Set up basic uptime monitoring with
 4. Configure **email alerts** to go to the site owner's address.
 5. Optionally add a second monitor for a key subpage (e.g., `/404`) to verify
    the Cloudflare Pages deployment is serving content.
+
+## Vendor Registration
+
+`/vendor-tables/#register` is the online table sign-up: $35 per table, max 4 per
+registration, with live "tables left" counts per show. Table capacity per show is
+the `tables` field in `astro/src/data/shows.json`.
+
+It runs on Cloudflare Pages Functions (`astro/functions/`), a D1 database
+(`collinsville_vendors`, schema in `astro/migrations/`), and Stripe Checkout.
+
+- Tables are held ~35 minutes while a vendor is in Stripe Checkout, then released.
+- Stripe emails a receipt; `/vendor-tables/receipt/?id=…` is a permanent printable receipt.
+- `/admin/` lists paid vendors per show (email, phone, tables, what they sell) with CSV export.
+  It requires Cloudflare Access.
+
+Variables & secrets (Pages → Settings → Variables and Secrets, Production):
+
+| Name | Value |
+|---|---|
+| `STRIPE_SECRET_KEY` | Stripe secret key |
+| `STRIPE_WEBHOOK_SECRET` | Signing secret for the webhook at `/api/stripe-webhook` (events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.expired`) |
+| `ACCESS_TEAM_DOMAIN` | e.g. `yourteam.cloudflareaccess.com` |
+| `ACCESS_AUD` | Audience tag of the Access application covering `/admin*` and `/api/admin/*` |
+
+Local preview with a real Functions runtime and local D1:
+
+```bash
+cd astro
+npm run preview:cf   # http://localhost:8788
+```
+
+`astro/.dev.vars` (gitignored) turns on a fake checkout and skips the admin login — on localhost only.

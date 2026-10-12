@@ -39,7 +39,7 @@ export const homepageFAQ = [
   },
   {
     question: "How do I reserve a vendor table?",
-    answer: "Call or text us at (618) 729-6999 to reserve your table. Tables fill up fast, so we recommend reaching out as early as possible.",
+    answer: "Reserve online at thecollinsvillecardshow.com/vendor-tables/ — tables are $35 each, up to 4 per registration, and you can see how many tables are left for every show. You'll get a receipt as soon as you pay.",
   },
   {
     question: "How often does the Collinsville Card Show happen?",

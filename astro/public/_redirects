@@ -1,0 +1,9 @@
+# Old WordPress pages from collinsvillecardshow.com (still indexed; that domain will redirect here path-for-path)
+/about      /#about                  301
+/about/     /#about                  301
+/contact    /#vendors                301
+/contact/   /#vendors                301
+# Short link for vendor registration
+/vendors    /vendor-tables/#register 301
+/vendors/   /vendor-tables/#register 301
+/register   /vendor-tables/#register 301

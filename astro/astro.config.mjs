@@ -9,7 +9,9 @@ export default defineConfig({
   output: 'static',
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !/\/(admin|vendor-tables\/(receipt|mock-checkout))\/?$/.test(new URL(page).pathname),
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
