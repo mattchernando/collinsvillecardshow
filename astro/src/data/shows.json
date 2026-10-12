@@ -1,6 +1,6 @@
 [
-  { "date": "November 7, 2026", "day": "Saturday", "tables": 74 },
-  { "date": "December 5, 2026", "day": "Saturday", "tables": 79 },
+  { "date": "November 7, 2026", "day": "Saturday", "tables": 85, "reserved": 11 },
+  { "date": "December 5, 2026", "day": "Saturday", "tables": 85, "reserved": 6 },
   { "date": "January 2, 2027", "day": "Saturday", "tables": 85 },
   { "date": "February 6, 2027", "day": "Saturday", "tables": 85 },
   { "date": "March 6, 2027", "day": "Saturday", "tables": 85 },

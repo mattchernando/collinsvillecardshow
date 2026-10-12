@@ -1,4 +1,4 @@
-import { PRICE_CENTS, MAX_TABLES, SELLS, showLabel } from '../../src/lib/shows.js';
+import { PRICE_CENTS, MAX_TABLES, SELLS, showLabel, sellableTables } from '../../src/lib/shows.js';
 import { json, mockMode, findUpcomingShow, stripe, tablesTaken, HOLDS_TABLES, HOLD_MINUTES, STRIPE_EXPIRY_MINUTES } from '../../server/lib.js';
 
 function validate(body) {
@@ -62,11 +62,11 @@ export async function onRequestPost({ request, env }) {
                   WHERE show_date = ?2 AND ${HOLDS_TABLES.replace('?', '?11')}) >= ?9`
   )
     .bind(id, show.date, v.name, v.business, v.email, v.phone, v.sells, v.sellsOther, v.tables,
-      v.tables * PRICE_CENTS, nowIso, expiresIso, show.tables)
+      v.tables * PRICE_CENTS, nowIso, expiresIso, sellableTables(show))
     .run();
 
   if (!insert.meta.changes) {
-    const remaining = Math.max(0, show.tables - ((await tablesTaken(env.DB, nowIso))[show.date] || 0));
+    const remaining = Math.max(0, sellableTables(show) - ((await tablesTaken(env.DB, nowIso))[show.date] || 0));
     return json({
       error: remaining
         ? `Only ${remaining} table${remaining === 1 ? '' : 's'} left for this show.`

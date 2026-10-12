@@ -94,7 +94,7 @@ function ShowView() {
           >
             {shows.map((s) => (
               <option key={s.date} value={s.date}>
-                {s.label} — {s.sold}/{s.capacity}
+                {s.label} — {s.sold + s.reserved}/{s.capacity}
               </option>
             ))}
           </select>
@@ -109,8 +109,12 @@ function ShowView() {
 
       {show && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <Stat label="Tables sold" value={`${show.sold} / ${show.capacity}`} sub={show.held ? `${show.held} held in checkout right now` : null} />
-          <Stat label="Tables left" value={show.capacity - show.sold - show.held} />
+          <Stat
+            label="Tables sold"
+            value={`${show.sold + show.reserved} / ${show.capacity}`}
+            sub={[show.reserved && `${show.reserved} sold before online registration`, show.held && `${show.held} held in checkout`].filter(Boolean).join(" · ") || null}
+          />
+          <Stat label="Tables left" value={show.capacity - show.reserved - show.sold - show.held} />
           <Stat label="Vendors" value={show.vendors} />
           <Stat label="Collected" value={money(revenue)} sub="Before Stripe fees" />
         </div>

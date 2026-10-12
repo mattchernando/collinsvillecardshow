@@ -21,6 +21,7 @@ export async function onRequestGet({ request, env }) {
     date: s.date,
     label: showLabel(s.date),
     capacity: s.tables,
+    reserved: s.reserved,
     sold: paid[s.date]?.tables || 0,
     vendors: paid[s.date]?.vendors || 0,
     held: (taken[s.date] || 0) - (paid[s.date]?.tables || 0),

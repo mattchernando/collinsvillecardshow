@@ -21,7 +21,15 @@ function toIsoDate(display) {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 }
 
-export const shows = rawShows.map((s) => ({ date: toIsoDate(s.date), tables: s.tables }));
+// `tables` is the show's total; `reserved` is tables sold outside online registration.
+export const shows = rawShows.map((s) => ({
+  date: toIsoDate(s.date),
+  tables: s.tables,
+  reserved: s.reserved ?? 0,
+}));
+
+// Tables online registration may sell for a show.
+export const sellableTables = (s) => s.tables - s.reserved;
 
 export function showLabel(iso) {
   return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {

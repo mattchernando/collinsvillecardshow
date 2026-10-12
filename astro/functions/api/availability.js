@@ -1,4 +1,4 @@
-import { PRICE_CENTS, MAX_TABLES, upcomingShows, showLabel } from '../../src/lib/shows.js';
+import { PRICE_CENTS, MAX_TABLES, upcomingShows, showLabel, sellableTables } from '../../src/lib/shows.js';
 import { json, tablesTaken } from '../../server/lib.js';
 
 export async function onRequestGet({ env }) {
@@ -10,7 +10,7 @@ export async function onRequestGet({ env }) {
       date: s.date,
       label: showLabel(s.date),
       capacity: s.tables,
-      remaining: Math.max(0, s.tables - (taken[s.date] || 0)),
+      remaining: Math.max(0, sellableTables(s) - (taken[s.date] || 0)),
     })),
   });
 }

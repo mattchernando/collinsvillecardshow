@@ -132,7 +132,8 @@ Set up basic uptime monitoring with
 
 `/vendor-tables/#register` is the online table sign-up: $35 per table, max 4 per
 registration, with live "tables left" counts per show. Table capacity per show is
-the `tables` field in `astro/src/data/shows.json`.
+the `tables` field in `astro/src/data/shows.json`; an optional `reserved` count marks tables
+sold outside online registration (they count as taken but are not in the admin vendor lists).
 
 It runs on Cloudflare Pages Functions (`astro/functions/`), a D1 database
 (`collinsville_vendors`, schema in `astro/migrations/`), and Stripe Checkout.
