@@ -8,3 +8,9 @@ binding = "DB"
 database_name = "collinsville_vendors"
 database_id = "bff03b92-3caf-4861-be1b-fd2226d81d6e"
 migrations_dir = "migrations"
+
+# Cloudflare Access app protecting admin.thecollinsvillecardshow.com (not secrets).
+# With a wrangler.toml, Pages ignores plain variables set in the dashboard — set them here.
+[vars]
+ACCESS_TEAM_DOMAIN = "mhernando.cloudflareaccess.com"
+ACCESS_AUD = "8cd963c0aba552d2b8bf0a946c42ee80362af807d7475c2c0552e8e0108c7b33"

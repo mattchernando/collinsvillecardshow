@@ -146,7 +146,11 @@ It runs on Cloudflare Pages Functions (`astro/functions/`), a D1 database
   on any other host. `functions/_middleware.js` handles the host routing; `public/_routes.json`
   keeps static assets from invoking Functions.
 
-Variables & secrets (Pages → Settings → Variables and Secrets, Production):
+Secrets go in Pages → Settings → Variables and Secrets (Production). Plain variables
+(`ACCESS_*`) live in `astro/wrangler.toml` under `[vars]` — Pages ignores dashboard-set plain
+variables when a wrangler.toml exists.
+
+Variables & secrets:
 
 | Name | Value |
 |---|---|

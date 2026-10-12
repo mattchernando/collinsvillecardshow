@@ -8,10 +8,15 @@ export async function onRequest(context) {
   // Access adds the header on requests it proxies; the CF_Authorization cookie
   // covers the rest (same approach as admin.cardmaps.app).
   const token = request.headers.get('cf-access-jwt-assertion') || readCookie(request, 'CF_Authorization');
-  if (!token || !env.ACCESS_TEAM_DOMAIN || !env.ACCESS_AUD) return json({ error: 'Unauthorized' }, 401);
+  if (!env.ACCESS_TEAM_DOMAIN || !env.ACCESS_AUD) {
+    console.error('admin auth: ACCESS_TEAM_DOMAIN / ACCESS_AUD not configured');
+    return json({ error: 'Unauthorized' }, 401);
+  }
+  if (!token) return json({ error: 'Unauthorized' }, 401);
   try {
     await verifyAccessJwt(token, env);
-  } catch {
+  } catch (err) {
+    console.error('admin auth: rejected token —', err.message);
     return json({ error: 'Unauthorized' }, 401);
   }
   return context.next();
